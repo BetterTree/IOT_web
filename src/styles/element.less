@@ -1,0 +1,115 @@
+.el-select-dropdown__item {
+  
+    &.selected {
+      color: #3c4353!important;
+    }
+  }
+  .el-dropdown-menu{
+    .el-dropdown-menu__item{
+      text-align: center!important;
+    }
+  }
+  .el-input.is-disabled .el-input__inner
+  {
+    cursor: pointer;
+  }
+
+
+  .el-switch {
+    .el-switch__core{
+      height: 36px;
+      width: 80px!important;
+      border-radius: 20px;
+      &:after {
+        height: 42px;
+        width: 42px;
+        background: #838b9d;
+        top:-4px;
+        left:-8px;
+      }
+    }
+    &.is-checked .el-switch__core::after{
+      margin-left: -34px!important;
+    }
+    
+  }
+
+
+
+  .deleteDialog {
+    .el-dialog__header {
+      text-align: left;
+      .ellipsis(1);
+      width: 200px;
+    }
+    .el-dialog__body {
+      padding: 5px 40px 0px!important;
+      .content {
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: -35px;
+      }
+    }
+    .el-dialog__footer {
+      .el-button {
+        background: #f6f7f9;
+        color: #3c4353;
+        border: 1px solid white;
+        &:hover,
+        &:focus {
+          background: #3c4353;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .projectDialog {
+    border: 1px solid #313131;
+    .el-dialog__header {
+      padding: 0;
+    }
+    .el-dialog__body {
+      padding: 20px 20px 0 20px!important;
+    
+      .el-form {
+        .el-form-item {
+          .el-form-item__content {
+            .el-input {
+              .el-input__inner {
+                background: #f6f7f9;
+              }
+              &.is-disabled .el-input__inner
+              {
+                cursor: pointer;
+              }
+            }
+            .el-textarea {
+              textarea {
+                background: #f6f7f9;
+              }
+            }
+          }
+          .el-button {
+            background: #f6f7f9;
+            color: #3c4353;
+            border: 1px solid #3c4353;
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+    .el-dialog__footer {
+      padding-bottom: 10px;
+      .el-button {
+        background: #f6f7f9;
+        color: #3c4353;
+        border: 1px solid white;
+        &:hover,
+        &:focus {
+          background: #3c4353;
+          color: white;
+        }
+      }
+    }
+  }

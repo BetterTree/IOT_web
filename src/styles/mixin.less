@@ -1,0 +1,41 @@
+
+//文本上下渐变
+.textBrush(@start,@end){
+    background-image: linear-gradient(to bottom, @start, @end);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+//梯形伪类
+.parallelogram {
+    content: "";
+    width: 50px;
+    position: absolute;
+    left: -2px;
+    top: -5px;
+    height: 0;
+    border-bottom: 5px solid #0087fe;
+    border-right: 5px solid transparent;
+  }
+
+
+.ellipsis(@rowCount) when(@rowCount <=1) 
+{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+} 
+
+.ellipsis(@rowCount) when(@rowCount >1) 
+{
+       min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: @rowCount;
+      -webkit-box-orient: vertical;
+      overflow-wrap: break-word;
+}
+  
+  
+ 
