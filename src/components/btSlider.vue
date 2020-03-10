@@ -1,11 +1,6 @@
 <template>
   <div>
-    <el-slider
-      v-bind="$attrs"
-      style="padding: 40px 20px 20px;"
-      v-model="inputValue"
-      @input="change"
-    ></el-slider>
+    <el-slider v-bind="$attrs" style v-model="inputValue" @input="change"></el-slider>
   </div>
 </template>
 <script>
@@ -41,4 +36,7 @@ export default {
 }
 </script>
 <style lang="less">
+.el-slide {
+  padding: 40px 20px 20px;
+}
 </style>

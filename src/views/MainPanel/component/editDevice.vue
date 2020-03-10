@@ -288,6 +288,7 @@ export default {
   .el-button {
     background: #f6f7f9;
     color: #3c4353;
+    width: 200px !important;
     &:hover,
     &:focus {
       background: #3c4353;

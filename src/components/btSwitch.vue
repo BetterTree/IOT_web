@@ -1,11 +1,6 @@
 <template>
-  <div>
-    <el-switch
-      style="width:120px;height:120px;margin-left:50px"
-      v-bind="$attrs"
-      v-model="inputValue"
-      @change="change"
-    ></el-switch>
+  <div class="bt-switch">
+    <el-switch v-bind="$attrs" v-model="inputValue" @change="change"></el-switch>
   </div>
 </template>
 <script>
@@ -37,5 +32,13 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="less">
+.bt-switch {
+  .el-switch {
+    width: 100px;
+    height: 100px;
+    margin-left: 50px;
+    //   margin-top: -10px;
+  }
+}
 </style>

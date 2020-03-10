@@ -7,21 +7,16 @@
           <el-form-item prop="userId">
             <el-input placeholder="用户名" type="text" v-model.trim="editForm.userId"></el-input>
           </el-form-item>
-          <el-form-item v-if="!slideSuccess">
-            <slide-check :width="480" :height="200" :src="src" @success="slideSuccess=true"></slide-check>
-          </el-form-item>
+          <!-- <el-form-item v-if="!slideSuccess">
+            <slide-check :width="340" :height="200" :src="src" @success="slideSuccess=true"></slide-check>
+          </el-form-item>-->
           <el-form-item>
             <el-button @click="submit()">确定</el-button>
           </el-form-item>
         </template>
         <template v-else>
           <el-form-item prop="question">
-            <el-select
-              style="width:500px;"
-              popper-append-to-body
-              v-model="editForm.question"
-              placeholder="安全问题"
-            >
+            <el-select popper-append-to-body v-model="editForm.question" placeholder="安全问题">
               <el-option
                 v-for="item in question"
                 :key="item.label"
@@ -50,7 +45,7 @@
             ></el-input>
           </el-form-item>
           <el-form-item v-if="!slideSuccess">
-            <slide-check :width="480" :height="200" :src="src" @success="slideSuccess=true"></slide-check>
+            <slide-check :height="200" :src="src" @success="slideSuccess=true"></slide-check>
           </el-form-item>
           <el-form-item>
             <el-button v-if="slideSuccess" @click="submit()">确定</el-button>
@@ -61,6 +56,9 @@
         </template>
       </el-form>
     </div>
+    <el-dialog :visible.sync="dialogVisible" width="30%">
+      <slide-check :width="340" :height="200" :src="src" @success="slideCheck"></slide-check>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -104,13 +102,23 @@ export default {
           }
         ]
       },
+      dialogVisible: false,
       isExistUser: false,
       slideSuccess: false,
     }
   },
   methods: {
+    slideCheck() {
+      this.dialogVisible = false
+      this.slideSuccess = true
+    },
+
     async submit() {
       if (this.step == 0) {
+        if (this.slideSuccess == false) {
+          this.dialogVisible = true
+          return
+        }
         this.$refs.editForm.validate(async valid => {
           if (valid) {
             await this.isExistUserAsync()
@@ -168,14 +176,13 @@ export default {
 <style lang="less">
 .forgetPwd {
   background: #f7f6fb;
-
   height: calc(100vh - 70px - 50px);
   text-align: center;
   display: flex;
   justify-content: center;
   .forgetPwd-box {
     width: 500px;
-    margin-top: 60px;
+    margin-top: 50px;
     h1 {
       font-size: 36px;
     }
@@ -191,10 +198,19 @@ export default {
           }
         }
       }
-      .wrap {
-        border: 1px solid #dcdfe6;
+      // .wrap {
+      //   border: 1px solid #dcdfe6;
+      //   width: 480px !important;
+      //   .slider-check-wrap {
+      //     width: 480px !important;
+      //     canvas {
+      //       width: 100%;
+      //     }
+      //   }
+      // }
+      .el-select {
+        width: 100%;
       }
-
       .el-checkbox {
         color: #a6aab8;
         text-align: left;

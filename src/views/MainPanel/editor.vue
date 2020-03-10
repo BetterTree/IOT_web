@@ -11,6 +11,7 @@
     <el-container>
       <el-aside width="210px">
         <el-menu
+          style="width:210px"
           :default-openeds="[0]"
           :unique-opened="true"
           background-color="#545c64"
@@ -70,31 +71,26 @@
                 <div style="margin-top: 30px;height:180px">
                   <template v-if="!item.isRunning">
                     <template v-if="item.index==0">
-                      <div v-if="item.type=='16777219'" style="font-size:48px;margin-top:70px;">
+                      <div v-if="item.type=='16777219'" class="w0 style1">
                         XX{{item.unit.split('/')[0]}}
                         YY{{item.unit.split('/')[1]}}
                       </div>
-                      <div
-                        v-else-if="item.type=='16777227'"
-                        style="font-size:64px;margin-top:60px;"
-                      >XY</div>
-                      <div v-else style="font-size:64px;margin-top:60px;">
+                      <div v-else-if="item.type=='16777227'" class="w0 style2">XY</div>
+                      <div v-else class="w0 style3">
                         <i>XX{{item.unit}}</i>
                       </div>
                     </template>
                     <template v-else-if="item.index==1">
-                      <div>
+                      <div class="w1">
                         <swiper :options="swiperOption">
                           <swiper-slide>
                             <img
                               :src="require(`@/assets/img/sensor/${item.folder}/${item.map.key0}.png`)"
-                              style="width:100px;height:100px"
                             />
                           </swiper-slide>
                           <swiper-slide>
                             <img
                               :src="require(`@/assets/img/sensor/${item.folder}/${item.map.key1}.png`)"
-                              style="width:100px;height:100px"
                             />
                           </swiper-slide>
                           <div class="swiper-pagination" slot="pagination"></div>
@@ -102,26 +98,23 @@
                       </div>
                     </template>
                     <template v-else-if="item.index==2">
-                      <div style="font-size: 64px;margin-top:60px;">年月日</div>
+                      <div class="w2">年月日</div>
                     </template>
                     <template v-else-if="item.index==3">
-                      <img
-                        :src="require(`@/assets/img/sensor/${item.folder}/${item.map.key0}.png`)"
-                        style="width:120px;height:120px"
-                      />
-                      <img
-                        :src="require(`@/assets/img/sensor/${item.folder}/${item.map.key1}.png`)"
-                        style="width:120px;height:120px"
-                      />
-                    </template>
-                    <template v-else-if="item.index==4">
-                      <div v-if="item.type=='-2130706431'">
+                      <div class="w3">
                         <img
-                          :src="require(`@/assets/img/lattice/${item.map.key1}.png`)"
-                          style="width:120px;height:120px"
+                          :src="require(`@/assets/img/sensor/${item.folder}/${item.map.key0}.png`)"
+                        />
+                        <img
+                          :src="require(`@/assets/img/sensor/${item.folder}/${item.map.key1}.png`)"
                         />
                       </div>
-                      <div style="font-family:'lcdfont';font-size:72px;margin-top:60px" v-else>
+                    </template>
+                    <template v-else-if="item.index==4">
+                      <div v-if="item.type=='-2130706431'" class="w4 style0">
+                        <img :src="require(`@/assets/img/lattice/${item.map.key1}.png`)" />
+                      </div>
+                      <div class="w4 style1" style v-else>
                         <span>{{item.map.key0}}</span>
                         <span>{{item.map.key1}}</span>
                         <span>{{item.map.key2}}</span>
@@ -129,12 +122,12 @@
                       </div>
                     </template>
                     <template v-else-if="item.index==5">
-                      <bt-shape style="margin-top:-36px;margin-left:-30px"></bt-shape>
+                      <bt-shape class="w5"></bt-shape>
                     </template>
                     <template v-else-if="item.index==6">
                       <el-slider
                         disabled
-                        style="padding: 40px 20px 20px;"
+                        class="w6"
                         :min="parentInt(item.map.key0)"
                         :max="parentInt(item.map.key1)"
                       ></el-slider>
@@ -142,16 +135,13 @@
                   </template>
                   <template v-else>
                     <template v-if="item.index==0">
-                      <div v-if="item.type=='16777219'" style="font-size:42px;margin-top:70px;">
+                      <div v-if="item.type=='16777219'" class="w0 style1 active">
                         <span>{{convertValue(item.value.substring(0,4))}}</span>
                         <i>{{item.unit.split('/')[0]}}</i>
                         <span style="margin-left:10px">{{convertValue(item.value.substring(4,8))}}</span>
                         <i>{{item.unit.split('/')[1]}}</i>
                       </div>
-                      <div
-                        v-else-if="item.type=='16777227'"
-                        style="font-size:48px;margin-top:45px;"
-                      >
+                      <div v-else-if="item.type=='16777227'" class="w0 style2 active">
                         <div>
                           <span>X:{{convertValue(item.value.substring(0,4))}}</span>
                         </div>
@@ -165,10 +155,11 @@
                       >{{convertValue(item.value,item.type)}}{{item.unit}}</div>
                     </template>
                     <template v-else-if="item.index==1">
-                      <img
-                        :src="require(`@/assets/img/sensor/${item.folder}/${getBooleanValue(item)}.png`)"
-                        style="width:120px;height:120px"
-                      />
+                      <div class="w1 active">
+                        <img
+                          :src="require(`@/assets/img/sensor/${item.folder}/${getBooleanValue(item)}.png`)"
+                        />
+                      </div>
                     </template>
                     <template v-else-if="item.index==2">
                       <div
@@ -196,7 +187,7 @@
                     </template>
                     <template v-else-if="item.index==5">
                       <bt-shape
-                        style="margin-top:-36px;margin-left:-30px"
+                        class="w5"
                         :code="id"
                         :widget-code="item.code"
                         :map="item.map"
@@ -205,6 +196,7 @@
                     </template>
                     <template v-else-if="item.index==6">
                       <bt-slider
+                        class="w6"
                         :min="parentInt(item.map.key0)"
                         :max="parentInt(item.map.key1)"
                         :value="parentInt(item.value)"
@@ -932,8 +924,8 @@ export default {
     color: #333;
     text-align: center;
     overflow: hidden;
+    //width: 210px;
     .el-menu {
-      width: 210px;
       .el-submenu {
         .el-submenu__title {
           text-align: left;
@@ -1060,11 +1052,74 @@ export default {
                 .ellipsis(1);
               }
             }
+            .w0 {
+              &.style1 {
+                font-size: 48px;
+                margin-top: 70px;
+                &.active {
+                  font-size: 42px;
+                  margin-top: 70px;
+                }
+              }
+              &.style2 {
+                font-size: 64px;
+                margin-top: 60px;
+                &.active {
+                  font-size: 48px;
+                  margin-top: 45px;
+                }
+              }
+              &.style3 {
+                font-size: 64px;
+                margin-top: 60px;
+              }
+            }
+            .w1 {
+              img {
+                width: 100px;
+                height: 100px;
+              }
+              &.active {
+                img {
+                  width: 120px;
+                  height: 120px;
+                }
+              }
+            }
+            .w2 {
+              font-size: 64px;
+              margin-top: 60px;
+            }
+            .w3 {
+              // margin-top: -10px;
+              img {
+                width: 100px;
+                height: 100px;
+              }
+            }
+            .w4 {
+              &.style0 {
+                img {
+                  width: 120px;
+                  height: 120px;
+                }
+              }
+              &.style1 {
+                font-family: "lcdfont";
+                font-size: 72px;
+                margin-top: 60px;
+              }
+            }
+            .w5 {
+              margin-top: -36px;
+              margin-left: -30px;
+            }
+            .w6 {
+              padding: 40px 20px 20px;
+            }
             .info {
               font-size: 64px;
               margin-top: 60px;
-
-              // .ellipsis(1);
               &.line1 {
                 font-size: 48px;
                 margin-top: 50px;
@@ -1104,6 +1159,20 @@ export default {
         height: @height1;
         background: #ffffff;
         box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+          width: 6px;
+          height: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: #cccccc;
+          height: 20px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: #e6e6e6;
+        }
         .pudding {
           text-align: left;
           margin-left: 10px;
@@ -1137,6 +1206,7 @@ export default {
         width: 60px;
         height: 60px;
         border-radius: 50%;
+        background: white;
         box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.2);
         i {
           line-height: 60px;

@@ -1,13 +1,7 @@
 <template>
-  <div>
+  <div class="bt-image-warp">
     <img :src="require(`@/assets/img/lattice/${src}.png`)" />
-    <el-select
-      placeholder
-      v-model="selectedKey"
-      @change="change"
-      style="width:80px;line-height: 120px;
-    vertical-align: top;"
-    >
+    <el-select placeholder v-model="selectedKey" @change="change" style>
       <el-option v-for="(item,index) in latticeTypes" :key="index" :value="item.desc">
         <img :src="require(`@/assets/img/lattice/${item.src}.png`)" style="width:30px;height:30px" />
       </el-option>
@@ -58,4 +52,15 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.bt-image-warp {
+  img {
+    width: 120px;
+    height: 120px;
+  }
+  .el-select {
+    width: 80px;
+    line-height: 120px;
+    vertical-align: top;
+  }
+}
 </style>

@@ -1,7 +1,8 @@
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const path = require('path')
-
+const autoprefixer = require('autoprefixer')
+const pxtorem = require('postcss-pxtorem')
 const isProd = process.env.NODE_ENV === 'production'
 
 function resolve(dir) {
@@ -23,6 +24,19 @@ module.exports = {
                 pathRewrite: {
                     '^/api': ''
                 }
+            }
+        }
+    },
+    css: {
+        loaderOptions: {
+            postcss: {
+                plugins: [
+                    autoprefixer(),
+                    pxtorem({
+                        rootValue: 192,
+                        propList: ['*']
+                    })
+                ]
             }
         }
     },

@@ -23,12 +23,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item prop="question">
-          <el-select
-            style="width:500px;"
-            popper-append-to-body
-            v-model="editForm.question"
-            placeholder="安全问题"
-          >
+          <el-select popper-append-to-body v-model="editForm.question" placeholder="安全问题">
             <el-option
               v-for="item in question"
               :key="item.label"
@@ -228,7 +223,9 @@ export default {
           }
         }
       }
-
+      .el-select {
+        width: 500px;
+      }
       .el-checkbox {
         color: #a6aab8;
         text-align: left;
@@ -266,6 +263,7 @@ export default {
       h6 {
         font-weight: bold;
       }
+
       line-height: 25px;
       &::-webkit-scrollbar {
         width: 6px;

@@ -58,8 +58,10 @@ export default {
 .el-header {
   background: #3c4353;
   width: 100%;
+  height: 70px;
   // line-height: 60px;
   display: flex;
+  align-items: center;
   > div:first-child {
     font-size: 70px;
     svg {

@@ -15,8 +15,8 @@
               ></i>
             </template>
             <el-upload
-              style="margin-top:10px;"
               ref="upload"
+              style="margin-bottom:0"
               action="/api/upload"
               :before-upload="beforeUpload"
               :show-file-list="false"
@@ -40,7 +40,7 @@
         </el-col>
         <el-col :span="12">
           <el-form-item label="生日">
-            <el-date-picker style="width:340px" v-model="editForm.birthday"></el-date-picker>
+            <el-date-picker v-model="editForm.birthday"></el-date-picker>
           </el-form-item>
         </el-col>
       </el-row>
@@ -186,7 +186,7 @@ export default {
       margin-bottom: 30px;
     }
     .el-row {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       .el-col {
         .el-form-item {
           .el-form-item__label {
@@ -199,6 +199,10 @@ export default {
               width: 80px;
               height: 80px;
               object-fit: fit;
+            }
+            .el-date-editor.el-input,
+            .el-date-editor.el-input__inner {
+              width: 260px;
             }
             .el-radio-group {
               .el-radio {
