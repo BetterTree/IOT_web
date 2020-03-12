@@ -4,7 +4,7 @@
       <el-tab-pane label="首页" name="home">
         <Dashboard @openProject="openProject"></Dashboard>
       </el-tab-pane>
-      <el-tab-pane closable v-for="(item,index) in editableTabs" :key="index" :name="item.id+''">
+      <el-tab-pane closable v-for="(item) in editableTabs" :key="item.id" :name="item.id+''">
         <span slot="label">{{item.name}}</span>
         <Editor v-bind="item"></Editor>
       </el-tab-pane>
@@ -56,8 +56,12 @@ export default {
         this.editableTabsValue = 'home'
       }
       else {
-        this.editableTabsValue = this.editableTabs[targetIndex - 1].id + ''
+        let index = targetIndex - 1
+        if (index < 0)
+          index = 0
+        this.editableTabsValue = this.editableTabs[index].id + ''
       }
+
     },
     async closeAll() {
       this.editableTabsValue = 'home'

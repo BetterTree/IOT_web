@@ -42,7 +42,7 @@ export default {
           value: [this.mkey0, this.mkey1, this.mkey2, this.mkey3].join(""),
           sensor: this.sensor
         })
-      }, 1000)
+      }, 100)
     }
   }
 }

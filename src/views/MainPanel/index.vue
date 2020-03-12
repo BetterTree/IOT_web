@@ -189,7 +189,8 @@ export default {
       this.getListAsync()
     },
     gotoDetail(item) {
-      this.$emit('openProject', item)
+      if (item.id != undefined)
+        this.$emit('openProject', item)
     },
     clipboardSuccess() {
       this.$message.success('复制成功')

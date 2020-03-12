@@ -12,7 +12,6 @@
       <el-aside width="210px">
         <el-menu
           style="width:210px"
-          :default-openeds="[0]"
           :unique-opened="true"
           background-color="#545c64"
           text-color="#fff"
@@ -330,7 +329,10 @@
               <el-input :maxlength="2" style="width:70px" v-model="widgetForm.code"></el-input>
             </el-form-item>
             <template v-if="widget.type==0">
-              <el-form-item label="单位" v-if="widgetForm.type!='16777219'">
+              <el-form-item
+                label="单位"
+                v-if="!['16777219','16777226','16777227','16777223'].includes(widgetForm.type)"
+              >
                 <el-select placeholder v-model="widgetForm.unit" style="width:70px">
                   <el-option
                     v-for="(item,index) in widget.unit"
@@ -340,7 +342,7 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <template v-else>
+              <template v-if="widgetForm.type=='16777219'">
                 <el-form-item label="温度单位">
                   <el-select v-model="widgetForm.unit1" style="width:60px" placeholder>
                     <el-option
@@ -923,8 +925,21 @@ export default {
     background-color: #545c64;
     color: #333;
     text-align: center;
-    overflow: hidden;
-    //width: 210px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #ccc;
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: white;
+    }
     .el-menu {
       .el-submenu {
         .el-submenu__title {
