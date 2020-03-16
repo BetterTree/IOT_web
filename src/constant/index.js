@@ -61,6 +61,10 @@ export const widgetTypes = [{
             }, {
                 title: '摇杆',
                 type: '16777227'
+            }, {
+                title: '自定义',
+                type: '16777216',
+                unit: '%'
             }
         ]
     },
@@ -143,6 +147,11 @@ export const widgetTypes = [{
                 title: 'RGB灯',
                 type: '-2147483644',
                 folder: '8'
+            },
+            {
+                title: '自定义',
+                type: '-2147483648',
+                folder: '8'
             }
         ]
     },
@@ -193,6 +202,10 @@ export const widgetTypes = [{
             {
                 title: '多路舵机驱动模块',
                 type: '-2097151997'
+            },
+            {
+                title: '自定义',
+                type: '-2097152000'
             }
         ]
     }
