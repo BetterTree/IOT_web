@@ -56,52 +56,52 @@ export default {
     onArrowUpMouseDown() {
       if (this.isClickable) {
         this.isUpActive = true
-        this.getCommandAsync(this.widgetCode, this.map.arrowup0)
+        this.getCommandAsync(this.widgetCode, 'arrowup0')
       }
     },
     onArrowUpMouseUp() {
       if (this.isClickable) {
         this.isUpActive = false
-        this.getCommandAsync(this.widgetCode, this.map.arrowup1)
+        this.getCommandAsync(this.widgetCode, 'arrowup1')
       }
     },
 
     onArrowDownMouseDown() {
       if (this.isClickable) {
         this.isDownActive = true
-        this.getCommandAsync(this.widgetCode, this.map.arrowdown0)
+        this.getCommandAsync(this.widgetCode, 'arrowdown0')
       }
     },
     onArrowDownMouseUp() {
       if (this.isClickable) {
         this.isDownActive = false
-        this.getCommandAsync(this.widgetCode, this.map.arrowdown1)
+        this.getCommandAsync(this.widgetCode, 'arrowdown1')
       }
     },
 
     onArrowLeftMouseDown() {
       if (this.isClickable) {
         this.isLeftActive = true
-        this.getCommandAsync(this.widgetCode, this.map.arrowleft0)
+        this.getCommandAsync(this.widgetCode, 'arrowleft0')
       }
     },
     onArrowLeftMouseUp() {
       if (this.isClickable) {
         this.isLeftActive = false
-        this.getCommandAsync(this.widgetCode, this.map.arrowleft1)
+        this.getCommandAsync(this.widgetCode, 'arrowleft1')
       }
     },
 
     onArrowRightMouseDown() {
       if (this.isClickable) {
         this.isRightActice = true
-        this.getCommandAsync(this.widgetCode, this.map.arrowright0)
+        this.getCommandAsync(this.widgetCode, 'arrowright0')
       }
     },
     onArrowRightMouseUp() {
       if (this.isClickable) {
         this.isRightActice = false
-        this.getCommandAsync(this.widgetCode, this.map.arrowright1)
+        this.getCommandAsync(this.widgetCode, 'arrowright1')
       }
     },
 

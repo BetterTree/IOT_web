@@ -187,7 +187,7 @@
                     <template v-else-if="item.index==5">
                       <bt-shape
                         class="w5"
-                        :code="id"
+                        :code="code"
                         :widget-code="item.code"
                         :map="item.map"
                         :is-clickable="true"
