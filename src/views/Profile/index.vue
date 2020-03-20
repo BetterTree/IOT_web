@@ -20,7 +20,6 @@
               action="/api/upload"
               :before-upload="beforeUpload"
               :show-file-list="false"
-              :limit="1"
               :headers="headers"
               :on-success="handleSuccess"
             >
@@ -132,15 +131,7 @@ export default {
   },
   methods: {
     beforeUpload(file) {
-      // console.log(file.type)
-      // const isImage = file.type == 'image/jpeg' || file.type == 'image/jpg' || file.type == 'image/png'
-      // if (!isImage) {
-      //   this.$message.error('只支持图片格式');
-      // }
-      // const isLt1M = file.size / 1024 / 1024 < 1;
-      // if (!isLt1M) {
-      //   this.$message.error('上传头像图片大小不能超过 1MB!');
-      // }
+      console.log(1)
       this.file = file
       let reader = new FileReader()
       reader.readAsDataURL(file)

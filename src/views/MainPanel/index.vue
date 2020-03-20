@@ -240,6 +240,9 @@ export default {
       }
       let { resultcode } = await this.$api.deleteProject(this.selectProject.id)
       if (resultcode == 0) {
+        if (this.list.filter(_ => _.id != undefined).length == 1 && this.page != 1) {
+          this.page = this.page - 1
+        }
         this.getListAsync()
         this.deleteDialogVisible = false
         this.$message.success('删除成功')
