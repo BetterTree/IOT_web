@@ -1,0 +1,347 @@
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td {
+    padding: 0;
+    margin: 0;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: Helvetica Neue, PingFang SC, Microsoft Yahei, '\5FAE\8F6F\96C5\9ED1', STXihei, '\534E\6587\7EC6\9ED1', sans-serif;
+    *line-height: 1.5;
+    -ms-overflow-style: scrollbar;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: inherit;
+    font: 100%;
+}
+
+caption,
+th {
+    text-align: left;
+}
+
+fieldset,
+img {
+    border: none;
+    vertical-align: middle;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+ins {
+    text-decoration: none;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+input,
+button,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    vertical-align: middle;
+    *font-size: 100%;
+    -moz-outline: none;
+    outline: none
+}
+
+:focus {
+    outline: none;
+}
+
+input {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+i,
+strong,
+th,
+var,
+optgroup {
+    font-style: normal;
+    font-weight: normal;
+}
+
+strong {
+    font-weight: 800;
+}
+
+code,
+kbd,
+pre,
+samp {
+    font-family: courier new, courier, monospace;
+}
+
+small {
+    font-size: 100%;
+}
+
+hr {
+    color: #333;
+    background-color: #333;
+    border: none;
+    height: 1px;
+}
+
+select {
+    -webkit-appearance: none;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.clear {
+    clear: both;
+}
+
+.clearfix:after {
+    content: '\0020';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+a {
+    text-decoration: none;
+    color: #0099ee;
+    cursor: pointer
+}
+
+sup {
+    vertical-align: text-top;
+}
+
+sub {
+    vertical-align: text-bottom;
+}
+
+legend {
+    color: #000;
+}
+
+body {
+    background-color: #fff;
+    color: #666;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    font-size: 14px;
+    color: #A7A7A7!important;
+    opacity: 1!important;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    font-size: 14px;
+    color: #A7A7A7!important;
+    opacity: 1!important;
+}
+
+ :-ms-input-placeholder {
+    font-size: 14px;
+    color: #A7A7A7!important;
+    opacity: 1!important;
+}
+
+ ::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #A7A7A7!important;
+    opacity: 1!important;
+}
+
+.pd0 {
+    padding: 0!important
+}
+
+.mg10 {
+    margin: 10px 0!important
+}
+
+.mt-12 {
+    margin-top: 12px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mt-60 {
+    margin-top: 60px;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+
+.ml-30 {
+    margin-left: 30px;
+}
+
+.ml-78 {
+    margin-left: 78px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.color-999 {
+    color: #999;
+}
+
+.color-red {
+    color: #FA6063;
+}
+
+.color-green {
+    color: #69C108;
+}
+
+.color-blue {
+    color: #4285F4;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.ivu-tooltip-inner {
+    max-width: 600px !important;
+}
+
+.ivu-btn-text:focus {
+    box-shadow: none !important;
+}
+
+.err-plain-btn.ivu-btn {
+    border-color: #FA6063;
+    color: #FA6063;
+}
+
+.err-plain-btn.ivu-btn:hover {
+    border-color: #FA6063;
+    color: #FA6063;
+    background: #fff;
+}
+
+.tip-orange {
+    color: #FB9109;
+}
+
+textarea[name=editorValue] {
+    display: none;
+}
+
+.ivu-modal-content {
+    border-radius: 0;
+}
