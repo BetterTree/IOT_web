@@ -70,10 +70,6 @@ export default {
     }
   },
   mounted() {
-    if (process.env.NODE_ENV == 'development') {
-      this.editForm.userId = 'admin'
-      this.editForm.userPwd = "123456"
-    }
     this.getLoginUserAsync()
   },
   methods: {
