@@ -1,1 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60"><defs><style>.cls-4{fill:#22a4db}</style></defs><path d="M.25 14.88V28.3h3.68v-.37a3.05 3.05 0 016.1 0 2.22 2.22 0 010 .37h3.44V14.88z" fill="#d02b2c"/><path d="M31.35 15.01H17.93v3.68a2.31 2.31 0 01.37 0 3.05 3.05 0 010 6.1h-.37v3.44h13.42z" fill="#f0ba1a"/><path d="M0 46.11h13.42v-3.69a2.22 2.22 0 01-.37 0 3.05 3.05 0 010-6.1h.37v-3.38H0z" fill="#83b547"/><path class="cls-4" d="M31.23 46.35V32.94h-3.68v.36a3.05 3.05 0 01-6.1 0v-.36h-3.36v13.41z"/><path fill="#dc6225" d="M32.69 11.71h5.61v5.61h-5.61z"/><path fill="#2e813a" d="M36.83 6.59h4.39v4.39h-4.39z"/><path fill="#efb81a" d="M32.69 3.17h3.42v3.42h-3.42z"/><path class="cls-4" d="M37.08 0h2.2v2.2h-2.2z"/><path fill="#fff" d="M35.49 22.48h.61v21.75h-.61z"/><text transform="translate(43.43 32.63)" font-family="SimHei,SimHei" font-size="12" fill="#fff">树上科技</text><text transform="matrix(1.2 0 0 1 43.6 44.35)" font-size="8" font-family="SimHei,SimHei" fill="#fff">BETTERTREE</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 240 60">
+	<defs>
+		<style>
+		.cls-4{fill:#22a4db}
+		</style>
+	</defs>
+		<path d="M.25 14.88V28.3h3.68v-.37a3.05 3.05 0 016.1 0 2.22 2.22 0 010 .37h3.44V14.88z" fill="#d02b2c"/>
+		<path d="M31.35 15.01H17.93v3.68a2.31 2.31 0 01.37 0 3.05 3.05 0 010 6.1h-.37v3.44h13.42z" fill="#f0ba1a"/>
+		<path d="M0 46.11h13.42v-3.69a2.22 2.22 0 01-.37 0 3.05 3.05 0 010-6.1h.37v-3.38H0z" fill="#83b547"/>
+		<path class="cls-4" d="M31.23 46.35V32.94h-3.68v.36a3.05 3.05 0 01-6.1 0v-.36h-3.36v13.41z"/>
+		<path fill="#dc6225" d="M32.69 11.71h5.61v5.61h-5.61z"/>
+		<path fill="#2e813a" d="M36.83 6.59h4.39v4.39h-4.39z"/>
+		<path fill="#efb81a" d="M32.69 3.17h3.42v3.42h-3.42z"/>
+		<path class="cls-4" d="M37.08 0h2.2v2.2h-2.2z"/>
+		<path fill="#fff" d="M35.49 22.48h.61v21.75h-.61z"/>
+		<text transform="translate(43.43 32.63)" font-family="SimHei,SimHei" font-size="12" fill="#fff">树上科技</text>
+		<text transform="matrix(1.2 0 0 1 43.6 44.35)" font-size="8" font-family="SimHei,SimHei" fill="#fff">BETTERTREE</text>
+</svg>

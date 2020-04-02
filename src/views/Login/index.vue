@@ -4,23 +4,22 @@
     <div class="login-box">
       <div class="login-panel animated fadeIn">
         <h1>物联网创新平台</h1>
-        <pre>
-          致力于云端描述、调用、采集真实世界数据的载体，提供设备管理、
-          数据接入、协议解析等基础功能,即点、即学、即调取各类IOT数据，
-          真正为物联网教育的交互式学习带来无限可能。
-          从端到云，从数据采集、传输、计算、存储、展现到分析,
-          立足于“连接”、“理解”到“唤醒”的各项关键能力，
-          构建各类智能物联网应用作品，完成赛事需求。
+        <br>
+        <pre class="textcss">
           互联互通，轻松掌控万物
           传输采集，快捷数据赋能
           一键操控，便利定义功能
+          专业构建各种场景智能物联网应用作品
+          即点、即学、即调取各项IOT数据
+          为互联网教育的交互学习和赛事需求
+          带来无限可能
+          创你所想，享你所创
         </pre>
+      </div>
+      <div class="login-form animated slideInRight">
         <div>
           <svg-icon iconClass="logo"></svg-icon>
         </div>
-      </div>
-      <div class="login-form animated slideInRight">
-        <h6>欢迎使用bettertree</h6>
         <el-form ref="editForm" :model="editForm" :rules="rules">
           <el-form-item prop="userId">
             <el-input
@@ -122,23 +121,18 @@ export default {
     height: 100%;
     .login-panel {
       width: 70%;
+      margin-left: 100px;
       h1 {
         margin-top: 170px;
         margin-bottom: 10px;
-        margin-left: 105px;
         color: white;
         font-size: 72px;
+        margin-left: 100px;
       }
       pre {
         color: #fefefe;
-        font-size: 28px;
-      }
-      div {
-        margin-left: 140px;
-        .svg-icon {
-          width: 800px;
-          height: 200px;
-        }
+        font-size: 25px;
+        line-height:200%;
       }
     }
     .login-form {
@@ -147,10 +141,10 @@ export default {
       margin: 55px 80px;
       border-radius: 8px;
       text-align: center;
-      h6 {
-        margin-top: 135px;
-        font-size: 32px;
-        color: #414141;
+      .svg-icon {
+        margin-top: 100px;
+        width: 80%;
+        height: 10%;
       }
       .el-form {
         margin: 42px 60px 0;
