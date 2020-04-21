@@ -63,10 +63,10 @@ export default {
   display: flex;
   align-items: center;
   > div:first-child {
-    font-size: 70px;
+    margin-top: 70px;
+    font-size: 150px;
     svg {
-      width: auto;
-      margin-top: 7px;
+      align-items: center;
     }
   }
   > div:last-child {

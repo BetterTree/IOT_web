@@ -4,7 +4,6 @@
     <div class="login-box">
       <div class="login-panel animated fadeIn">
         <h1>物联网创新平台</h1>
-        <br>
         <pre class="textcss">
           互联互通，轻松掌控万物
           传输采集，快捷数据赋能
@@ -142,9 +141,10 @@ export default {
       border-radius: 8px;
       text-align: center;
       .svg-icon {
-        margin-top: 100px;
-        width: 80%;
-        height: 10%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 240px;
+        height: 120px;
       }
       .el-form {
         margin: 42px 60px 0;
