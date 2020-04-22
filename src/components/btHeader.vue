@@ -1,8 +1,10 @@
 <template>
   <el-header height="70px">
-    <div>
-      <svg-icon iconClass="logo" />
-    </div>
+      <img
+          :src="require(`@/assets/img/logo.png`)"
+           style="height:70px"
+
+      />
 
     <el-dropdown v-if="user!=null" @command="command">
       <span class="el-dropdown-link">
@@ -63,7 +65,6 @@ export default {
   display: flex;
   align-items: center;
   > div:first-child {
-    margin-top: 70px;
     font-size: 150px;
     svg {
       align-items: center;

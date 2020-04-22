@@ -81,7 +81,6 @@ export default {
 .home {
   position: relative;
   .el-tabs {
-    margin-top: 15px;
     .el-tabs__header {
       margin: 0;
       .el-tabs__nav-wrap {
