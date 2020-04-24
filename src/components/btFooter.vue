@@ -1,5 +1,5 @@
 <template>
-  <el-footer height="50px">
+  <el-footer height="20px">
     <p>Copyright © 2019-2020</p>
     <a target="_blank"  href="http://www.bettertree.cn">www.bettertree.cn</a>&nbsp;&nbsp;
     <a>隐私声明 资质证照</a>
@@ -18,6 +18,6 @@ export default {
 </script>
 <style lang="less">
 .el-footer {
-  line-height: 30px;
+  font-size: 0.3em;
 }
 </style>

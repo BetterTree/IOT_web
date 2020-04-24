@@ -24,7 +24,7 @@ export default {
 .layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  // height: 100vh;
   background: white;
   .el-main {
     padding: 0;

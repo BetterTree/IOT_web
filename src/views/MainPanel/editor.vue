@@ -1015,12 +1015,14 @@ export default {
           flex-wrap: wrap;
           grid-template-columns: repeat(auto-fill, 300px);
           .__drag_item {
+            font-size: 0.5em;
             width: 300px;
             height: 219px;
             box-shadow: 0px 3px 10px 0px rgba(52, 52, 52, 0.5);
             position: relative;
             margin-bottom: 55px;
             .t1 {
+              font-size: 0.5em;
               width: 86px;
               display: block;
               position: absolute;
@@ -1029,6 +1031,7 @@ export default {
               border-bottom: 11px solid;
             }
             .t2 {
+              font-size: 0.5em;
               width: 96px;
               height: 0;
               position: absolute;
@@ -1042,6 +1045,7 @@ export default {
               }
             }
             .t3 {
+              font-size: 0.5em;
               height: 30px;
               line-height: 30px;
               background: white;
