@@ -45,10 +45,13 @@
         </el-row>
       </li>
     </ul>
-    <el-button @click="showDeviceDialog()">
-      <i class="iconfont icon-add"></i>
-      新增设备
-    </el-button>
+    <div style="align:center">
+      <el-button @click="showDeviceDialog()">
+        <i class="iconfont icon-add"></i>
+        新增设备
+      </el-button>
+    </div>
+
     <el-dialog
       :visible.sync="dialogVisible"
       top="25vh"
@@ -243,7 +246,7 @@ export default {
   padding: 10px 0px;
   border-top: 1px solid #ccc;
   ul {
-    height: 205px;
+    height: 400px;
     overflow-y: auto;
     text-align: left;
     margin-bottom: 25px;

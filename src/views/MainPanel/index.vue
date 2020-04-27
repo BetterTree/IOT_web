@@ -30,19 +30,23 @@
           :class="[!item.hasOwnProperty('id')?'empty':'']"
           @click="gotoDetail(item)"
         >
-          <el-row class="row1">
-            <el-col :span="12" :title="item.name">
-              <span style="cursor:pointer">{{item.name}}</span>
-            </el-col>
-            <el-col :span="8">{{item.updateTime|formatDate('MM-dd hh:mm')}}</el-col>
-            <el-col :span="4" style="text-align:right">
-              <i class="el-icon-more" @click.stop="showDialog(false,item)"></i>
-              <i class="el-icon-delete" @click.stop="showDeleteDialog(item)"></i>
-            </el-col>
-          </el-row>
-          <el-row class="row2">
-            <el-col :span="24">{{item.remark}}</el-col>
-          </el-row>
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <el-col>
+                <span>{{item.name}}</span>
+              </el-col>
+              <el-col class="row1"  :span="12">{{item.updateTime|formatDate('MM-dd')}}</el-col>
+              <el-col :span="12" style="text-align:right">
+                <i style="font-size: 0.5em" class="el-icon-more" @click.stop="showDialog(false,item)"></i>
+                <i style="font-size: 0.5em" class="el-icon-delete" @click.stop="showDeleteDialog(item)"></i>
+              </el-col>
+            </div>
+            <div class="text item">
+              <el-row class="row2">
+                <el-col :span="24">{{item.remark}}</el-col>
+              </el-row>
+            </div>
+          </el-card>
         </li>
       </ul>
       <el-pagination
@@ -317,12 +321,16 @@ export default {
         border: 1px solid #aaaaaa;
         background: white;
         box-shadow: 0px 3px 10px 0px rgba(52, 52, 52, 0.5);
-        height: 25vh;
-        min-width: 250px;
+        // height: 250px;
+        min-width: 300px;
         transition: transform 1s linear;
+        .box-card {
+          height: 18em;
+        }
         &.empty {
           opacity: 0;
         }
+        /*
         .row1 {
           height: 30px;
           line-height: 30px;
@@ -346,10 +354,16 @@ export default {
             }
           }
         }
+        */
+        .row1 {
+          font-size: 0.5em;
+        }
+
         .row2 {
           padding: 0 20px;
-          line-height: 30px;
-          height: calc(25vh - 30px);
+          line-height: 3em;
+          font-size: 0.5em;
+          // height: calc(25vh - 30px);
           :nth-child(1) {
             .ellipsis(6);
           }
