@@ -25,9 +25,8 @@
       </span>
     </el-header>
     <el-container>
-      <el-aside width="210px">
+      <el-aside style="width:20%">
         <el-menu
-          style="width:210px"
           :unique-opened="true"
           background-color="#545c64"
           text-color="#fff"
