@@ -1,11 +1,27 @@
 <template>
   <el-container class="editor">
-    <el-header height="35px">
+    <el-header height="40px">
+      <span style="margin-top: 1em">
+        <project-code :id="id"></project-code>
+      </span>
+      <span>
+          <i class="iconfont el-icon-setting" @click="dialogTableVisible = true"></i>
+      </span>
+      <span>
+        <el-dropdown trigger="click">
+        <span class="el-dropdown-link">
+          <i class="iconfont el-icon-cpu el-icon--right"></i>
+        </span>
+          <el-dropdown-menu slot="dropdown">
+            <edit-device :id="id" :code="code" :isRunning="isRunning"></edit-device>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </span>
       <span @click="runAsync()" v-if="!isRunning">
-        <i class="el-icon-video-play"></i>
+        <i class="iconfont el-icon-video-play"></i>
       </span>
       <span @click="stopAsync()" v-else>
-        <i class="el-icon-video-pause"></i>
+        <i class="iconfont el-icon-video-pause"></i>
       </span>
     </el-header>
     <el-container>
@@ -208,17 +224,6 @@
               </div>
             </drag-item>
           </drag-wrap>
-        </div>
-        <div class="drawer" v-show="zoom==true">
-          <div class="pudding" @click="setZoom(false)">
-            <i class="iconfont icon-zoomout"></i>
-          </div>
-          <h1>编辑栏</h1>
-          <edit-project :id="id"></edit-project>
-          <edit-device :id="id" :code="code" :isRunning="isRunning"></edit-device>
-        </div>
-        <div class="drawer1" v-show="zoom==false" @click="setZoom(true)">
-          <i class="iconfont icon-zoom"></i>
         </div>
         <el-dialog
           :visible.sync="widgetDialogVisible"
@@ -441,6 +446,9 @@
           </div>
         </el-dialog>
       </el-main>
+      <el-dialog :visible.sync="dialogTableVisible">
+          <edit-project :id="id"></edit-project>
+      </el-dialog>
     </el-container>
   </el-container>
 </template>
@@ -448,6 +456,7 @@
 import { mapGetters, mapState } from 'vuex'
 import editProject from './component/editProject'
 import editDevice from './component/editDevice'
+import projectCode from './component/projectCode'
 import { widgetTypes, latticeTypes } from '@/constant'
 import { requiredInput, maxInput, ID } from '@/utils/validate'
 import { formatDate } from '@/filters'
@@ -455,6 +464,7 @@ export default {
   name: "",
   data() {
     return {
+      dialogTableVisible: false,
       isRunning: false,
       widgetTypes,
       latticeTypes,
@@ -529,7 +539,8 @@ export default {
   },
   components: {
     editProject,
-    editDevice
+    editDevice,
+    projectCode
   },
   computed:
   {
@@ -560,6 +571,13 @@ export default {
     this.getWidgetByProjectIdAsync()
   },
   methods: {
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+        .then(_ => {
+          done();
+        })
+        .catch(_ => {});
+    },
     menuClick(indexArray) {
       let [index, type] = indexArray.split("|")
       let x = this.widgetTypes[index].children.find(_ => _.type == type)
@@ -965,10 +983,12 @@ export default {
     border-bottom: 1px solid #ccc;
     overflow: hidden;
     span {
+      margin-right: 30px;
       line-height: 35px;
       color: #3c4353;
       font-size: 24px;
     }
+
   }
   .el-container {
     height: @height;
@@ -1003,7 +1023,8 @@ export default {
         }
       }
       .widgetWarp {
-        width: var(--width);
+        // width: var(--width);
+        margin-right: 30px;
         .widgetList {
           width: 100%;
           margin: 0 15px;
@@ -1175,7 +1196,7 @@ export default {
         right: 20px;
         top: 180px;
         width: 330px;
-        height: @height1;
+        // height: @height1;
         background: #ffffff;
         box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2);
         overflow-y: auto;
@@ -1221,7 +1242,7 @@ export default {
       .drawer1 {
         position: fixed;
         right: 20px;
-        top: 170px;
+        top: 500px;
         width: 60px;
         height: 60px;
         border-radius: 50%;

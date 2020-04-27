@@ -30,48 +30,23 @@
           :class="[!item.hasOwnProperty('id')?'empty':'']"
           @click="gotoDetail(item)"
         >
-          <div data-v-9feaa67c="" class="el-card box-card is-always-shadow">
-            <div class="el-card__header">
-              <div data-v-9feaa67c="" class="clearfix">
-                <el-col :span="24" :title="item.name">
-                  <span class="row1" style="cursor:pointer">{{item.name}}</span>
-                </el-col>
-                  <el-col class="row1"  :span="12">{{item.updateTime|formatDate('MM-dd')}}</el-col>
-                  <el-col :span="12" style="text-align:right">
-                    <i style="font-size: 0.5em" class="el-icon-more" @click.stop="showDialog(false,item)"></i>
-                    <i style="font-size: 0.5em" class="el-icon-delete" @click.stop="showDeleteDialog(item)"></i>
-                  </el-col>
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <el-col>
+                <span>{{item.name}}</span>
+              </el-col>
+              <el-col class="row1"  :span="12">{{item.updateTime|formatDate('MM-dd')}}</el-col>
+              <el-col :span="12" style="text-align:right">
+                <i style="font-size: 0.5em" class="el-icon-more" @click.stop="showDialog(false,item)"></i>
+                <i style="font-size: 0.5em" class="el-icon-delete" @click.stop="showDeleteDialog(item)"></i>
+              </el-col>
             </div>
+            <div class="text item">
+              <el-row class="row2">
+                <el-col :span="24">{{item.remark}}</el-col>
+              </el-row>
             </div>
-            <div class="el-card__body">
-              <div data-v-9feaa67c="" class="component-item">
-                <div data-v-175fbaac="" data-v-9feaa67c="" class="pan-item">
-                  <div data-v-175fbaac="" class="pan-info">
-                    <div data-v-175fbaac="" class="pan-info-roles-container">
-                      <el-row class="row2">
-                        <el-col :span="24">{{item.remark}}</el-col>
-                      </el-row>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--
-          <el-row class="row1">
-            <el-col :span="12" :title="item.name">
-              <span style="cursor:pointer">{{item.name}}</span>
-            </el-col>
-            <el-col :span="8">{{item.updateTime|formatDate('MM-dd hh:mm')}}</el-col>
-            <el-col :span="4" style="text-align:right">
-              <i class="el-icon-more" @click.stop="showDialog(false,item)"></i>
-              <i class="el-icon-delete" @click.stop="showDeleteDialog(item)"></i>
-            </el-col>
-          </el-row>
-          <el-row class="row2">
-            <el-col :span="24">{{item.remark}}</el-col>
-          </el-row>
-          -->
+          </el-card>
         </li>
       </ul>
       <el-pagination

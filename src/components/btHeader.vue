@@ -2,7 +2,7 @@
   <el-header height="70px">
       <img
           :src="require(`@/assets/img/logo.png`)"
-           style="height:70px"
+           style="height:42px"
 
       />
 
@@ -10,7 +10,7 @@
       <span class="el-dropdown-link">
         <img v-if="user.userPhoto!=null" :src="web_site+user.userPhoto" />
         <i v-else class="iconfont icon--header" style="font-size: 42px;vertical-align: middle;"></i>
-        {{user.userId}}
+        <a style="font-size: 16px">{{user.userId}}</a>
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
