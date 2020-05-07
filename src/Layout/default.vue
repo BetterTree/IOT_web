@@ -21,6 +21,7 @@ export default {
 }
 </script>
 <style lang="less">
+  /*
 .layout {
   display: flex;
   flex-direction: column;
@@ -32,8 +33,21 @@ export default {
     background-color: #838a9d;
   }
   footer {
-    flex-shrink: 0;
+    flex-shrink: 1;
     text-align: center;
   }
 }
+   */
+
+  .layout {
+    background: white;
+    .el-main {
+      padding: 0;
+      background-color: #838a9d;
+    }
+    .el-footer {
+      padding: 0;
+      text-align: center;
+    }
+  }
 </style>

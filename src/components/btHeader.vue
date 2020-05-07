@@ -3,7 +3,6 @@
       <img
           :src="require(`@/assets/img/logo.png`)"
            style="height:42px"
-
       />
 
     <el-dropdown v-if="user!=null" @command="command">
@@ -60,7 +59,8 @@ export default {
 .el-header {
   background: #3c4353;
   width: 100%;
-  height: 70px;
+  min-height: 50px;
+  max-height: 400px;
   // line-height: 60px;
   display: flex;
   align-items: center;

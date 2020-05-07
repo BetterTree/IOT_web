@@ -262,7 +262,6 @@ export default {
 .dashboard {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 70px - 104px);
   overflow: auto;
   .search {
     background: white;
@@ -314,18 +313,12 @@ export default {
       padding: 0 100px;
       li {
         margin-top: 30px;
-        list-style: none;
-        color: black;
-        flex: 0 0 21%;
         margin-bottom: 1.5vh;
-        border: 1px solid #aaaaaa;
-        background: white;
-        box-shadow: 0px 3px 10px 0px rgba(52, 52, 52, 0.5);
-        // height: 250px;
-        min-width: 300px;
-        transition: transform 1s linear;
+        height: 18em;
+        width: 350px;
         .box-card {
           height: 18em;
+          width: 350px;
         }
         &.empty {
           opacity: 0;
