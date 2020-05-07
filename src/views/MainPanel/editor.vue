@@ -1,17 +1,28 @@
 <template>
+  <!-- Project Editor Page Start -->
   <el-container class="editor">
+
+    <!-- Toolbar Start -->
     <el-header height="40px">
+
+      <!-- Project code -->
       <span style="margin-top: 1em">
         <project-code :id="id"></project-code>
       </span>
+
+      <!-- Project Info -->
       <span>
           <i class="iconfont el-icon-setting" @click="dialogTableVisible = true"></i>
       </span>
-      <span>
-        <el-dropdown trigger="click">
-        <span class="el-dropdown-link">
+
+      <!-- Equipment List -->
+      <span class="el-dropdown-link">
           <i class="iconfont el-icon-cpu el-icon--right"></i>
         </span>
+
+      <!-- run button -->
+      <span>
+        <el-dropdown trigger="click">
           <el-dropdown-menu slot="dropdown">
             <edit-device :id="id" :code="code" :isRunning="isRunning"></edit-device>
           </el-dropdown-menu>
@@ -24,8 +35,13 @@
         <i class="iconfont el-icon-video-pause"></i>
       </span>
     </el-header>
+    <!-- Toolbar End -->
+
+    <!-- Project Editor -->
     <el-container>
-      <el-aside style="width:20%">
+
+      <!-- Left menu bar -->
+      <el-aside style="width:15%">
         <el-menu
           :unique-opened="true"
           background-color="#545c64"
@@ -48,6 +64,8 @@
           </el-submenu>
         </el-menu>
       </el-aside>
+
+      <!-- model list -->
       <el-main>
         <div class="widgetWarp" ref="widgetWarp">
           <drag-wrap class="widgetList" :data="widgetList" @watchData="watchData">
@@ -934,10 +952,11 @@ export default {
 </script>
 <style lang="less">
 .editor {
+
   @height: calc(
     100vh - 70px - 50px - 15px - 40px - 35px + 1px
   ); //100vh- header -footer - margintop -tabheight - header  + border
-  @height1: calc(@height - 70px);
+  // @height1: calc(@height - 70px);
   .el-aside {
     background-color: #545c64;
     color: #333;
