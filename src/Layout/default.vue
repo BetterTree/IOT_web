@@ -6,7 +6,7 @@
         <router-view></router-view>
       </transition>
     </el-main>
-    <bt-footer></bt-footer>
+    <!-- <bt-footer></bt-footer> -->
   </el-container>
 </template>
 <script>
