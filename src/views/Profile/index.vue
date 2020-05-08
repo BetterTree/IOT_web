@@ -23,6 +23,7 @@
               :headers="headers"
               :on-success="handleSuccess"
             >
+              <br />
               <el-button type="ghost">选择图片</el-button>
             </el-upload>
           </el-form-item>
@@ -30,7 +31,7 @@
       </el-row>
       <el-row>
         <el-col :span="12">
-          <el-form-item label="你的性别">
+          <el-form-item label="性别">
             <el-radio-group v-model="editForm.gender">
               <el-radio :label="'1'">男</el-radio>
               <el-radio :label="'0'">女</el-radio>
@@ -45,12 +46,12 @@
       </el-row>
       <el-row>
         <el-col :span="12">
-          <el-form-item label="你的手机号码">
+          <el-form-item label="手机号码">
             <el-input v-model="editForm.userTel"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="你的邮箱">
+          <el-form-item label="邮箱地址">
             <el-input v-model="editForm.userEmail"></el-input>
           </el-form-item>
         </el-col>
@@ -180,6 +181,9 @@ export default {
       margin-bottom: 15px;
       .el-col {
         .el-form-item {
+          .el-input {
+            width: 300px;
+          }
           .el-form-item__label {
             font-size: 30px;
             color: #3c4353;
