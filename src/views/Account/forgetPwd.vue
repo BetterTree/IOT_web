@@ -7,9 +7,9 @@
           <el-form-item prop="userId">
             <el-input placeholder="用户名" type="text" v-model.trim="editForm.userId"></el-input>
           </el-form-item>
-          <!-- <el-form-item v-if="!slideSuccess">
+          <el-form-item v-if="!slideSuccess">
             <slide-check :width="340" :height="200" :src="src" @success="slideSuccess=true"></slide-check>
-          </el-form-item>-->
+          </el-form-item>
           <el-form-item>
             <el-button @click="submit()">确定</el-button>
           </el-form-item>
@@ -56,9 +56,11 @@
         </template>
       </el-form>
     </div>
+    <!--
     <el-dialog :visible.sync="dialogVisible" width="30%">
       <slide-check :width="340" :height="200" :src="src" @success="slideCheck"></slide-check>
     </el-dialog>
+    -->
   </div>
 </template>
 <script>
