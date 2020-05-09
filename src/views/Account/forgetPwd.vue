@@ -13,6 +13,11 @@
           <el-form-item>
             <el-button @click="submit()">确定</el-button>
           </el-form-item>
+          <el-form-item>
+            <router-link to="/login">
+              <el-button >返回登录</el-button>
+            </router-link>
+          </el-form-item>
         </template>
         <template v-else>
           <el-form-item prop="question">
