@@ -22,7 +22,7 @@
         </el-form-item>
       </el-form>
     </div>
-    <main>
+    <main style="height: 760px">
       <ul>
         <li
           v-for="(item,index) in list"
@@ -357,6 +357,7 @@ export default {
           line-height: 3em;
           font-size: 0.5em;
           // height: calc(25vh - 30px);
+          // 自动换行样式
           :nth-child(1) {
             .ellipsis(6);
           }
