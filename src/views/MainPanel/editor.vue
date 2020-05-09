@@ -16,13 +16,9 @@
       </span>
 
       <!-- Equipment Icon -->
-      <span class="el-dropdown-link">
-          <i class="iconfont el-icon-cpu el-icon--right"></i>
-      </span>
-
-      <!-- Equipment List -->
       <span>
         <el-dropdown trigger="click">
+          <i class="iconfont el-icon-cpu el-icon--right"></i>
           <el-dropdown-menu slot="dropdown">
             <edit-device :id="id" :code="code" :isRunning="isRunning"></edit-device>
           </el-dropdown-menu>
@@ -30,11 +26,13 @@
       </span>
 
       <!-- run button -->
-      <span @click="runAsync()" v-if="!isRunning">
-        <i class="iconfont el-icon-video-play"></i>
-      </span>
-      <span @click="stopAsync()" v-else>
-        <i class="iconfont el-icon-video-pause"></i>
+      <span>
+        <span @click="runAsync()" v-if="!isRunning">
+          <i class="iconfont el-icon-video-play"></i>
+        </span>
+        <span @click="stopAsync()" v-else>
+          <i class="iconfont el-icon-video-pause"></i>
+        </span>
       </span>
     </el-header>
     <!-- Toolbar End -->
