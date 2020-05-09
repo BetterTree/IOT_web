@@ -67,6 +67,15 @@ export default {
       }
     }
   },
+  created() {
+    var _self = this;
+    document.onkeydown = function(e){
+      var key = window.event.keyCode;
+      if(key == 13 || key == 100){
+        _self.submit();
+      }
+    }
+  },
   mounted() {
     this.getLoginUserAsync()
   },
