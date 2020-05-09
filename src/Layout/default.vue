@@ -45,9 +45,5 @@ export default {
       padding: 0;
       background-color: #838a9d;
     }
-    .el-footer {
-      padding: 0;
-      text-align: center;
-    }
   }
 </style>
