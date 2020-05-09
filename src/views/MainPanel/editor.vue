@@ -15,12 +15,12 @@
           <i class="iconfont el-icon-setting" @click="dialogTableVisible = true"></i>
       </span>
 
-      <!-- Equipment List -->
+      <!-- Equipment Icon -->
       <span class="el-dropdown-link">
           <i class="iconfont el-icon-cpu el-icon--right"></i>
-        </span>
+      </span>
 
-      <!-- run button -->
+      <!-- Equipment List -->
       <span>
         <el-dropdown trigger="click">
           <el-dropdown-menu slot="dropdown">
@@ -28,6 +28,8 @@
           </el-dropdown-menu>
         </el-dropdown>
       </span>
+
+      <!-- run button -->
       <span @click="runAsync()" v-if="!isRunning">
         <i class="iconfont el-icon-video-play"></i>
       </span>
@@ -83,21 +85,22 @@
                   <el-col :span="2" class="prefix">
                     <span>{{item.prefix}}</span>
                   </el-col>
-                  <el-col :span="10">
+                  <el-col :span="8">
                     <span class="name">{{item.name}}</span>
                   </el-col>
-                  <el-col :span="4">
+                  <el-col :span="2">
                     <span>{{item.code}}</span>
                   </el-col>
-                  <el-col :span="8" style="text-align:right;padding-right: 6px;">
-                    <i class="el-icon-more" @click="showEditDialog(item)"></i>
+                  <el-col :span="12" style="text-align:right;padding-right: 10px;">
+                    <i style="margin-right: 5px; font-size: 10px" class="iconfont el-icon-more" @click="showEditDialog(item)"></i>
                     <i
-                      class="el-icon-caret-right"
+                      class="iconfont el-icon-caret-right"
                       v-if="item.isRunning!=true"
                       @click="runWidgetAsync(item)"
+                      style="margin-right: 5px; font-size: 10px"
                     ></i>
-                    <i class="el-icon-video-pause" v-else @click="stopWidgetAsync(item)"></i>
-                    <i class="el-icon-delete" @click="showDeleteDialog(item)"></i>
+                    <i style="margin-right: 5px; font-size: 10px" class="iconfont el-icon-video-pause" v-else @click="stopWidgetAsync(item)"></i>
+                    <i style="font-size: 10px" class="iconfont el-icon-delete" @click="showDeleteDialog(item)"></i>
                   </el-col>
                 </el-row>
                 <div style="margin-top: 30px;height:180px">
@@ -1085,8 +1088,8 @@ export default {
             }
             .t3 {
               font-size: 0.5em;
-              height: 30px;
-              line-height: 30px;
+              height: 40px;
+              line-height: 40px;
               background: white;
               width: 100%;
               text-align: left;
