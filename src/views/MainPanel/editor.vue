@@ -78,7 +78,9 @@
                   </div>
                 </div>
               </div>
+              <!-- 组件列表 -->
               <div>
+                <!-- 组件标题栏 -->
                 <el-row class="t3">
                   <el-col :span="2" class="prefix">
                     <span>{{item.prefix}}</span>
@@ -101,8 +103,12 @@
                     <i style="font-size: 10px" class="iconfont el-icon-delete" @click="showDeleteDialog(item)"></i>
                   </el-col>
                 </el-row>
+                <!-- 组件内容栏 -->
                 <div style="margin-top: 30px;height:180px">
+                  <!-- 组件在运行状态 -->
                   <template v-if="!item.isRunning">
+
+                    <!-- 数值显示 -->
                     <template v-if="item.index==0">
                       <div v-if="item.type=='16777219'" class="w0 style1">
                         XX{{item.unit.split('/')[0]}}
@@ -113,6 +119,8 @@
                         <i>XX{{item.unit}}</i>
                       </div>
                     </template>
+
+                    <!-- 布尔显示 -->
                     <template v-else-if="item.index==1">
                       <div class="w1">
                         <swiper :options="swiperOption">
@@ -130,9 +138,13 @@
                         </swiper>
                       </div>
                     </template>
+
+                    <!-- 时间显示 -->
                     <template v-else-if="item.index==2">
                       <div class="w2">年月日</div>
                     </template>
+
+                    <!-- 开关控制 -->
                     <template v-else-if="item.index==3">
                       <div class="w3">
                         <img
@@ -143,6 +155,8 @@
                         />
                       </div>
                     </template>
+
+                    <!-- 多功能组件 -->
                     <template v-else-if="item.index==4">
                       <div v-if="item.type=='-2130706431'" class="w4 style0">
                         <img :src="require(`@/assets/img/lattice/${item.map.key1}.png`)" />
@@ -154,9 +168,13 @@
                         <span>{{item.map.key3}}</span>
                       </div>
                     </template>
+
+                    <!-- 方向控制 -->
                     <template v-else-if="item.index==5">
                       <bt-shape class="w5"></bt-shape>
                     </template>
+
+                    <!-- 滚动条控制 -->
                     <template v-else-if="item.index==6">
                       <el-slider
                         disabled
@@ -166,6 +184,8 @@
                       ></el-slider>
                     </template>
                   </template>
+
+                  <!-- 运行状态 -->
                   <template v-else>
                     <template v-if="item.index==0">
                       <div v-if="item.type=='16777219'" class="w0 style1 active">
@@ -243,6 +263,8 @@
             </drag-item>
           </drag-wrap>
         </div>
+
+        <!-- 创建 or 编辑 组件弹出框 -->
         <el-dialog
           :visible.sync="widgetDialogVisible"
           :custom-class="'widgetDialog '+'widgetDialog'+widget.type"
@@ -251,10 +273,13 @@
           top="35vh"
           :close-on-click-modal="false"
         >
+          <!-- 弹出框标题栏 -->
           <template slot="title">
-            <div>{{widget.alias}}</div>
-            <div>{{widget.title}}</div>
+            <div style="font-size: 0.3em;">{{widget.alias}}</div>
+            <div style="font-size: 0.3em;">{{widget.title}}</div>
           </template>
+
+          <!-- 弹出框表单 -->
           <el-form :inline="true" ref="widgetForm" :model="widgetForm" :rules="rules">
             <template v-if="widget.type==5">
               <bt-shape style="text-align:center">
@@ -446,6 +471,8 @@
             <el-button type="primary" @click="saveWidgetAsyc()">确定</el-button>
           </div>
         </el-dialog>
+
+        <!-- 删除组件询问框 -->
         <el-dialog
           :visible.sync="deleteDialogVisible"
           :center="true"
