@@ -19,6 +19,16 @@ export const widgetTypes = [{
         alias: '数值',
         color: '#F4BF1F',
         children: [{
+              title: '温度传感器',
+              type: '16777214',
+              unit: '℃'
+            },
+            {
+              title: '湿度传感器',
+              type: '16777215',
+              unit: '%'
+            },
+            {
                 title: '土壤湿度',
                 type: '16777217',
                 unit: '%'
@@ -29,10 +39,6 @@ export const widgetTypes = [{
                 unit: '℃'
             },
             {
-                title: '温湿度传感器',
-                type: '16777219',
-                unit: ['℃', '%']
-            }, {
                 title: '声音传感器',
                 type: '16777220',
                 unit: 'dB'
