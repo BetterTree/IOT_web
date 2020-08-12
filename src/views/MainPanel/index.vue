@@ -23,9 +23,8 @@
       </el-form>
     </div>
     <el-alert
-      title="消息提示的文案"
       type="info"
-      description="文字说明文字说明文字说明文字说明文字说明文字说明"
+      description="由于疫情原因，全国青少年电子信息智能创新大赛预计今年下旬启动，具体消息请以后续公告为准。"
       show-icon>
     </el-alert>
     <main style="height: 760px">
