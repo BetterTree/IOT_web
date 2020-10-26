@@ -172,6 +172,7 @@ export default {
       let { resultcode, resultmsg } = await this.$api.chgPwd(data)
       if (resultcode == 0) {
         this.$message.success('修改成功')
+        this.$router.push('/login')
       }
       else {
         this.$message.info(resultmsg)
