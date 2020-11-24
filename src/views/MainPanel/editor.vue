@@ -822,7 +822,8 @@ export default {
           data.widgets.forEach(_ => {
             let temp, temp1
             for (let i = 0; i < this.widgetTypes.length; i++) {
-              temp1 = this.widgetTypes[i].children.find(o => o.type === _.type)
+              // eslint-disable-next-line eqeqeq
+              temp1 = this.widgetTypes[i].children.find(o => o.type == _.type) // 这两个值不全等
               if (temp1 !== undefined) {
                 temp = this.widgetTypes[i]
                 break
