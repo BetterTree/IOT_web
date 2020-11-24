@@ -39,7 +39,7 @@ export default {
 
   },
   mounted () {
-    this.editForm = { ...this.projects.find(_ => _.id == this.id) }
+    this.editForm = { ...this.projects.find(_ => _.id === this.id) }
   },
   methods: {
     clipboardSuccess () {

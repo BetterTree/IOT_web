@@ -73,7 +73,7 @@ import { requiredInput, password } from '@/utils/validate'
 import { question } from '@/constant'
 export default {
   name: '',
-  data() {
+  data () {
     return {
       question,
       editForm: {
@@ -85,9 +85,9 @@ export default {
       },
       step: 0,
       src: [
-        require("@/assets/img/slideCheck/1.jpg"),
-        require("@/assets/img/slideCheck/2.jpg"),
-        require("@/assets/img/slideCheck/3.jpg")
+        require('@/assets/img/slideCheck/1.jpg'),
+        require('@/assets/img/slideCheck/2.jpg'),
+        require('@/assets/img/slideCheck/3.jpg')
       ],
       rules: {
         userId: requiredInput('用户名不能为空'),
@@ -97,7 +97,7 @@ export default {
             validator: (rule, value, callback) => {
               if (value === '') {
                 callback(new Error('请确认密码'))
-              } else if (this.editForm.newPwd != value) {
+              } else if (this.editForm.newPwd !== value) {
                 callback(new Error('确认密码错误'))
               } else {
                 callback()
@@ -111,18 +111,18 @@ export default {
       },
       dialogVisible: false,
       isExistUser: false,
-      slideSuccess: false,
+      slideSuccess: false
     }
   },
   methods: {
-    slideCheck() {
+    slideCheck () {
       this.dialogVisible = false
       this.slideSuccess = true
     },
 
-    async submit() {
-      if (this.step == 0) {
-        if (this.slideSuccess == false) {
+    async submit () {
+      if (this.step === 0) {
+        if (this.slideSuccess === false) {
           this.dialogVisible = true
           return
         }
@@ -132,19 +132,12 @@ export default {
             if (this.isExistUser) {
               await this.getUserByUserIdAsync()
               this.step++
-            }
-            else {
+            } else {
               this.$message.error('用户不存在')
             }
           }
         })
-      }
-      // else if (this.step == 1) {
-      //   this.step++
-      //   this.slideSuccess = false
-
-      // }
-      else {
+      } else {
         this.$refs.editForm.validate(async valid => {
           if (valid) {
             this.forgetPwdAsync()
@@ -152,29 +145,27 @@ export default {
         })
       }
     },
-    async isExistUserAsync() {
+    async isExistUserAsync () {
       let { existed } = await this.$api.isExistUser(this.editForm.userId)
       this.isExistUser = existed
     },
-    async getUserByUserIdAsync() {
+    async getUserByUserIdAsync () {
       let { resultcode, resultmsg, data } = await this.$api.getUserByUserId(this.editForm.userId)
-      if (resultcode == 0) {
+      if (resultcode === 0) {
         let { id, question } = data
         this.editForm.question = parseInt(question)
         this.editForm.id = id
-      }
-      else {
+      } else {
         this.$message.warning(resultmsg)
       }
     },
-    async forgetPwdAsync() {
+    async forgetPwdAsync () {
       let { userId, confirmPwd, ...data } = this.editForm
       let { resultcode, resultmsg } = await this.$api.chgPwd(data)
-      if (resultcode == 0) {
+      if (resultcode === 0) {
         this.$message.success('修改成功')
         this.$router.push('/login')
-      }
-      else {
+      } else {
         this.$message.info(resultmsg)
       }
     }

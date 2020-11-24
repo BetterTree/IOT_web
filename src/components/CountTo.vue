@@ -93,7 +93,7 @@ export default {
          */
     unit: {
       type: Array,
-      default() {
+      default () {
         return [[3, 'K+'], [6, 'M+'], [9, 'B+']]
       }
     },
@@ -110,25 +110,25 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       counter: null,
       unitText: ''
     }
   },
   computed: {
-    counterId() {
+    counterId () {
       return `count_to_${this._uid}`
     }
   },
   methods: {
-    getHandleVal(val, len) {
+    getHandleVal (val, len) {
       return {
         endVal: parseInt(val / Math.pow(10, this.unit[len - 1][0])),
         unitText: this.unit[len - 1][1]
       }
     },
-    transformValue(val) {
+    transformValue (val) {
       let len = this.unit.length
       let res = {
         endVal: 0,
@@ -143,7 +143,7 @@ export default {
       if (val > Math.pow(10, this.unit[len - 1][0])) res = this.getHandleVal(val, len)
       return res
     },
-    getValue(val) {
+    getValue (val) {
       let res = 0
       if (this.simplify) {
         let { endVal, unitText } = this.transformValue(val)
@@ -155,7 +155,7 @@ export default {
       return res
     }
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       let endVal = this.getValue(this.end)
       let options = {
@@ -166,30 +166,28 @@ export default {
       }
       if (this.selfFormat) {
         options.formattingFn = function (nStr) {
-          nStr = nStr.toFixed(this.decimals);
-          nStr += '';
-          var x, x1, x2, rgx;
-          x = nStr.split('.');
+          nStr = nStr.toFixed(this.decimals)
+          nStr += ''
+          var x, x1, x2
+          x = nStr.split('.')
           if (this.options.useGrouping) {
             x1 = x[0].replace(/\B(?=(?:\d{3})+\b)/g, this.options.separator)
               .split('').map(_ => {
-                if (_ == this.options.separator) {
+                if (_ === this.options.separator) {
                   return _
-                }
-                else
+                } else {
                   return `<span>${_}</span>`
+                }
               })
-            x1 = x1.join("")
-
-          }
-          else {
+            x1 = x1.join('')
+          } else {
             x1 = x[0].split('').map(_ => {
               return `<span>${_}</span>`
-            }).join("");
+            }).join('')
           }
-          x2 = x.length > 1 ? this.options.decimal + x[1] : '';
-          return this.options.prefix + x1 + x2 + this.options.suffix;
-        };
+          x2 = x.length > 1 ? this.options.decimal + x[1] : ''
+          return this.options.prefix + x1 + x2 + this.options.suffix
+        }
       }
       this.counter = new CountUp(this.counterId, this.startVal, endVal, this.decimals, this.duration, options)
 
@@ -199,7 +197,7 @@ export default {
     })
   },
   watch: {
-    end(newVal) {
+    end (newVal) {
       let endVal = this.getValue(newVal)
       this.counter.update(endVal)
     }

@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'layout',
-  data() {
+  data () {
     return {
     }
   },

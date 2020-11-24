@@ -11,8 +11,8 @@
 <script>
 import { latticeTypes } from '@/constant'
 export default {
-  name: "",
-  data() {
+  name: '',
+  data () {
     return {
       latticeTypes,
       selectedKey: '',
@@ -25,8 +25,8 @@ export default {
     }
   },
   methods: {
-    change(value) {
-      let lattice = this.latticeTypes.find(_ => _.desc == value)
+    change (value) {
+      let lattice = this.latticeTypes.find(_ => _.desc === value)
       this.src = lattice.src
       this.$emit('success', {
         // map: {
@@ -41,7 +41,7 @@ export default {
   },
   watch: {
     sensor: {
-      handler(newVal) {
+      handler (newVal) {
         this.selectedKey = newVal.map.key0
         this.src = newVal.map.key1
       },

@@ -9,8 +9,8 @@
 <script>
 import { throttle } from '@/utils/throttle'
 export default {
-  name: "",
-  data() {
+  name: '',
+  data () {
     return {
       mkey0: 0,
       mkey1: 0,
@@ -23,14 +23,14 @@ export default {
       type: Object
     }
   },
-  mounted() {
+  mounted () {
     this.mkey0 = this.sensor.map.key0
     this.mkey1 = this.sensor.map.key1
     this.mkey2 = this.sensor.map.key2
     this.mkey3 = this.sensor.map.key3
   },
   methods: {
-    change(value) {
+    change (value) {
       throttle(() => {
         this.$emit('success', {
           // map: {
@@ -39,7 +39,7 @@ export default {
           //   key2: this.mkey2,
           //   key3: this.mkey3
           // },
-          value: [this.mkey0, this.mkey1, this.mkey2, this.mkey3].join(""),
+          value: [this.mkey0, this.mkey1, this.mkey2, this.mkey3].join(''),
           sensor: this.sensor
         })
       }, 100)

@@ -5,8 +5,8 @@
 </template>
 <script>
 export default {
-  name: "",
-  data() {
+  name: '',
+  data () {
     return {
       inputValue: 0
     }
@@ -19,11 +19,11 @@ export default {
       type: Number
     }
   },
-  mounted() {
+  mounted () {
     this.inputValue = this.value
   },
   methods: {
-    change(value) {
+    change (value) {
       this.$emit('success', {
         value,
         sensor: this.sensor

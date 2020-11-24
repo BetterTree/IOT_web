@@ -55,7 +55,7 @@
 import { requiredInput, password } from '@/utils/validate'
 export default {
   name: '',
-  data() {
+  data () {
     return {
       editForm: {
         userId: '',
@@ -67,39 +67,38 @@ export default {
       }
     }
   },
-  created() {
-    var _self = this;
-    document.onkeydown = function(e){
-      var key = window.event.keyCode;
-      if(key == 13 || key == 100){
-        _self.submit();
+  created () {
+    var _self = this
+    document.onkeydown = function (e) {
+      var key = window.event.keyCode
+      if (key === 13 || key === 100) {
+        _self.submit()
       }
     }
   },
-  mounted() {
+  mounted () {
     this.getLoginUserAsync()
   },
   methods: {
-    submit() {
+    submit () {
       this.$refs.editForm.validate(async valid => {
         if (valid) {
           this.LoignAsync()
         }
       })
     },
-    async LoignAsync() {
+    async LoignAsync () {
       let { resultcode, resultmsg, data } = await this.$api.login(this.editForm)
-      if (resultcode == 0) {
+      if (resultcode === 0) {
         localStorage.setItem('Token', JSON.stringify(data))
         this.getLoginUserAsync()
-      }
-      else {
+      } else {
         this.$message.warning(resultmsg)
       }
     },
-    async getLoginUserAsync() {
+    async getLoginUserAsync () {
       let { resultcode, data } = await this.$api.getLoginUser()
-      if (resultcode == 0) {
+      if (resultcode === 0) {
         this.$store.commit('SET_USER', data)
         this.$router.push('/')
       }

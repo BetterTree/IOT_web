@@ -96,10 +96,9 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import { requiredInput } from '@/utils/validate'
 export default {
   name: '',
-  data() {
+  data () {
     return {
       editForm: {
         gender: '0',
@@ -123,15 +122,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['user']),
+    ...mapGetters(['user'])
 
   },
-  mounted() {
+  mounted () {
     this.editForm = Object.assign({}, this.editForm, this.user)
     this.editFormCopy = { ...this.editForm }
   },
   methods: {
-    beforeUpload(file) {
+    beforeUpload (file) {
       console.log(1)
       this.file = file
       let reader = new FileReader()
@@ -140,18 +139,18 @@ export default {
       reader.onloadend = function (e) {
         _this.previewImageSrc = reader.result
       }
-      //return false;
+      // return false;
     },
-    handleSuccess(file) {
+    handleSuccess (file) {
       this.editForm.userPhoto = file.data
     },
-    cancel() {
-      //this.editForm = { ...this.editFormCopy }
+    cancel () {
+      // this.editForm = { ...this.editFormCopy }
       this.$router.go(-1)
     },
-    async saveAsync() {
+    async saveAsync () {
       let { resultcode } = await this.$api.editUser(this.editForm)
-      if (resultcode == 0) {
+      if (resultcode === 0) {
         let user = { ...this.user, ...this.editForm }
         this.$message.success('修改成功')
         this.$store.commit('SET_USER', user)
@@ -193,7 +192,7 @@ export default {
             img {
               width: 80px;
               height: 80px;
-              object-fit: fit;
+              object-fit: fill;
             }
             .el-date-editor.el-input,
             .el-date-editor.el-input__inner {

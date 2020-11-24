@@ -6,15 +6,15 @@ import * as device from './device'
 import Vue from 'vue'
 
 const api = {
-    ...login,
-    ...user,
-    ...project,
-    ...widget,
-    ...device
+  ...login,
+  ...user,
+  ...project,
+  ...widget,
+  ...device
 }
 
 api.install = () => {
-    Vue.prototype.$api = api
+  Vue.prototype.$api = api
 }
 
 export default api

@@ -135,7 +135,7 @@ import { requiredInput, maxInput, password } from '@/utils/validate'
 import { question } from '@/constant'
 export default {
   name: '',
-  data() {
+  data () {
     return {
       question,
       editForm: {
@@ -157,7 +157,7 @@ export default {
             validator: (rule, value, callback) => {
               if (value === '') {
                 callback(new Error('请确认密码'))
-              } else if (this.editForm.userPwd != value) {
+              } else if (this.editForm.userPwd !== value) {
                 callback(new Error('确认密码错误'))
               } else {
                 callback()
@@ -173,25 +173,23 @@ export default {
     }
   },
   methods: {
-    submit() {
+    submit () {
       this.$refs.editForm.validate(async valid => {
         if (valid) {
           this.registerAsync()
         }
       })
     },
-    async registerAsync() {
+    async registerAsync () {
       let { confirmPwd, ...data } = this.editForm
       let { resultcode } = await this.$api.register(data)
-      if (resultcode == 0) {
+      if (resultcode === 0) {
         this.$message.success('注册成功')
         this.$router.push('/login')
-      }
-      else if (resultcode == 100) {
+      } else if (resultcode === 100) {
         this.$message.error('用户名已存在,请重新注册')
         this.editForm.userId = ''
-      }
-      else {
+      } else {
         this.$message.error('注册失败')
       }
     }

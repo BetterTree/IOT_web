@@ -16,8 +16,8 @@
 </template>
 <script>
 export default {
-  name: "",
-  data() {
+  name: '',
+  data () {
     return {
       inputValue: 0
     }
@@ -32,26 +32,24 @@ export default {
     }
   },
   methods: {
-    change() {
+    change () {
       this.$emit('update:value', this.inputValue)
-      if (this.isInput == false) {
+      if (this.isInput === false) {
         this.$emit('change')
       }
     },
-    add() {
+    add () {
       if (this.inputValue < 9) {
         this.inputValue++
-      }
-      else {
+      } else {
         this.inputValue = 0
       }
       this.change()
     },
-    minus() {
+    minus () {
       if (this.inputValue > 0) {
         this.inputValue--
-      }
-      else {
+      } else {
         this.inputValue = 9
       }
       this.change()
@@ -59,7 +57,7 @@ export default {
   },
   watch: {
     value: {
-      handler(newVal) {
+      handler (newVal) {
         this.inputValue = newVal
       },
       immediate: true
