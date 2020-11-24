@@ -2,7 +2,6 @@
   <el-form
     ref="editForm"
     :model="editForm"
-    :rules="rules"
     label-width="70px"
     label-position="right"
   >
