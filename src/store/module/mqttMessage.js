@@ -21,8 +21,8 @@ const mqttMessage = {
           }]
         })
       } else {
-        let tempWidget = temp.widget.find(_ => _.code == code)
-        if (tempWidget == undefined) {
+        let tempWidget = temp.widget.find(_ => _.code === code)
+        if (tempWidget === undefined) {
           temp.widget.push({
             code,
             value

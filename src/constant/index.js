@@ -212,31 +212,95 @@ export const widgetTypes = [{
 export const latticeTypes = [
   {
     src: '01',
+    value: '0008180808080000',
+    desc: '1'
+  }, {
+    src: '02',
+    value: '003C043C203C0000',
+    desc: '2'
+  }, {
+    src: '03',
+    value: '003C043C043C0000',
+    desc: '3'
+  }, {
+    src: '04',
+    value: '000818287C080800',
+    desc: '4'
+  }, {
+    src: '05',
+    value: '003C203C043C0000',
+    desc: '5'
+  }, {
+    src: '06',
+    value: '003C203C243C0000',
+    desc: '6'
+  }, {
+    src: '07',
+    value: '003C040810200000',
+    desc: '7'
+  }, {
+    src: '08',
+    value: '003C243C243C0000',
+    desc: '8'
+  }, {
+    src: '09',
+    value: '003C243C043C0000',
+    desc: '9'
+  },{
+    src: '10',
     value: '0066999942241800',
     desc: '爱心'
   },
   {
-    src: '02',
+    src: '11',
     value: '00183C5A18181800',
     desc: '上'
   },
   {
-    src: '03',
+    src: '12',
     value: '001818185A3C1800',
     desc: '下'
   },
   {
-    src: '04',
+    src: '13',
     value: '0008047E7E040800',
     desc: '右'
   },
   {
-    src: '05',
+    src: '14',
     value: '0010207E7E201000',
     desc: '左'
   }, {
-    src: '06',
+    src: '15',
     value: '000010387C000000',
     desc: '三角'
+  }, {
+    src: '16',
+    value: '0000E70000003C00',
+    desc: '- -'
+  }, {
+    src: '17',
+    value: '0044281028440000',
+    desc: 'X'
+  }, {
+    src: '18',
+    value: '0000024428100000',
+    desc: '√'
+  },{
+    src: '19',
+    value: '0042A50000241800',
+    desc: '^v^'
+  }, {
+    src: '20',
+    value: '0042244200241800',
+    desc: '>v<'
+  }, {
+    src: '21',
+    value: '0018244242421800',
+    desc: '圆形'
+  }, {
+    src: '22',
+    value: '007E424242427E00',
+    desc: '矩形'
   }
 ]

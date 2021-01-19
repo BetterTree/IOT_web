@@ -109,11 +109,13 @@
                   <template v-if="!item.isRunning">
 
                     <!-- 数值显示 -->
-                    <template v-if="item.index==0">
+                    <template v-if="it em.index==0">
+                      <!-- 温湿度显示逻辑 -->
                       <div v-if="item.type=='16777219'" class="w0 style1">
                         XX{{item.unit.split('/')[0]}}
                         YY{{item.unit.split('/')[1]}}
                       </div>
+                      <!-- 摇杆显示逻辑 -->
                       <div v-else-if="item.type=='16777227'" class="w0 style2">XY</div>
                       <div v-else class="w0 style3">
                         <i>XX{{item.unit}}</i>
@@ -188,12 +190,14 @@
                   <!-- 运行状态 -->
                   <template v-else>
                     <template v-if="item.index==0">
+                      <!-- 温湿度显示逻辑 -->
                       <div v-if="item.type=='16777219'" class="w0 style1 active">
                         <span>{{convertValue(item.value.substring(0,4))}}</span>
                         <i>{{item.unit.split('/')[0]}}</i>
                         <span style="margin-left:10px">{{convertValue(item.value.substring(4,8))}}</span>
                         <i>{{item.unit.split('/')[1]}}</i>
                       </div>
+                      <!-- 摇杆显示逻辑 -->
                       <div v-else-if="item.type=='16777227'" class="w0 style2 active">
                         <div>
                           <span>X:{{convertValue(item.value.substring(0,4))}}</span>
@@ -492,13 +496,13 @@
         </el-dialog>
       </el-main>
       <el-dialog :visible.sync="dialogTableVisible">
-          <edit-project :id="id"></edit-project>
+        <edit-project :id="id"></edit-project>
       </el-dialog>
     </el-container>
   </el-container>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import editProject from './component/editProject'
 import editDevice from './component/editDevice'
 import projectCode from './component/projectCode'
@@ -506,8 +510,8 @@ import { widgetTypes, latticeTypes } from '@/constant'
 import { requiredInput, maxInput, ID } from '@/utils/validate'
 import { formatDate } from '@/filters'
 export default {
-  name: '',
-  data () {
+  name: "",
+  data() {
     return {
       dialogTableVisible: false,
       isRunning: false,
@@ -542,14 +546,14 @@ export default {
         name: maxInput('名称', 16),
         code: ID,
         'map.key0': requiredInput('值不能为空', 'change'),
-        'map.key1': requiredInput('值不能为空', 'change')
+        'map.key1': requiredInput('值不能为空', 'change'),
       },
       widget: {
         alias: '',
         title: '',
         type: '',
         unit: [''],
-        unit1: [''], // 温湿度传感器特别处理
+        unit1: [''],//温湿度传感器特别处理
         unit2: [''],
         folder: ''
       },
@@ -563,7 +567,7 @@ export default {
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
-          renderBullet (index, className) {
+          renderBullet(index, className) {
             return `<span  class="${className}">${index}</span>`
           }
         }
@@ -588,10 +592,10 @@ export default {
     projectCode
   },
   computed:
-  {
-    ...mapGetters(['listeners'])
-  },
-  mounted () {
+    {
+      ...mapGetters(['listeners']),
+    },
+  mounted() {
     let x = window.screen.width - 210 - 330 - 20 - 30
     this.$refs.widgetWarp.style.setProperty('--width', `${x}px`)
     let margin = (x - 300 * 4) / 8
@@ -599,34 +603,33 @@ export default {
   },
   watch: {
     listeners: {
-      handler (newVal) {
-        let project = this.listeners.find(_ => _.projectId === this.code)
-        if (project !== undefined) {
+      handler(newVal) {
+        let project = this.listeners.find(_ => _.projectId == this.code)
+        if (project != undefined) {
           project.widget.forEach(_ => {
-            let temp = this.widgetList.find(o => o.code === _.code)
-            if (temp !== undefined) {
+            let temp = this.widgetList.find(o => o.code == _.code)
+            if (temp != undefined)
               temp.value = _.value
-            }
           })
         }
       },
       deep: true
     }
   },
-  created () {
+  created() {
     this.getWidgetByProjectIdAsync()
   },
   methods: {
-    handleClose (done) {
+    handleClose(done) {
       this.$confirm('确认关闭？')
         .then(_ => {
-          done()
+          done();
         })
-        .catch(_ => {})
+        .catch(_ => {});
     },
-    menuClick (indexArray) {
-      let [index, type] = indexArray.split('|')
-      let x = this.widgetTypes[index].children.find(_ => _.type === type)
+    menuClick(indexArray) {
+      let [index, type] = indexArray.split("|")
+      let x = this.widgetTypes[index].children.find(_ => _.type == type)
       this.widget.alias = this.widgetTypes[index].alias
       this.widget.title = x.title
       this.widget.type = this.widgetTypes[index].type
@@ -636,20 +639,23 @@ export default {
       this.widgetForm.code = ''
       this.widgetForm.name = ''
       this.widgetForm.unit = ''
-      if (x.type === '-2130706430') { // 四位数码管
+      if (x.type == '-2130706430') {  //四位数码管
         this.widgetForm.map.key0 = 0
         this.widgetForm.map.key1 = 0
         this.widgetForm.map.key2 = 0
         this.widgetForm.map.key3 = 0
-      } else if (x.type === '-2130706431') { // 点阵屏
+      }
+      else if (x.type == '-2130706431')  //点阵屏
+      {
         this.widgetForm.map.key0 = ''
         this.widgetForm.map.key1 = ''
         this.widgetForm.map.key2 = ''
-      } else {
+      }
+      else {
         this.widgetForm.map.key0 = ''
         this.widgetForm.map.key1 = ''
       }
-      if (this.widget.type === 5) {
+      if (this.widget.type == 5) {
         this.widgetForm.control = {
           arrowup0: '',
           arrowup1: '',
@@ -662,19 +668,20 @@ export default {
         }
       }
       this.widget.unit.length = this.widget.unit1.length = this.widget.unit2.length = 1
-      if (x.unit !== undefined) {
+      if (x.unit != undefined) {
         if (Array.isArray(x.unit)) {
-          if (x.type === '16777219') {
+          if (x.type == "16777219") {
             this.widget.unit1.push(x.unit[0])
             this.widget.unit2.push(x.unit[1])
-          } else {
+          }
+          else {
             this.widget.unit = this.widget.unit.concat(x.unit)
           }
-        } else {
-          this.widget.unit.push(x.unit)
         }
+        else
+          this.widget.unit.push(x.unit)
       }
-      if (x.folder !== undefined) {
+      if (x.folder != undefined) {
         this.widget.folder = x.folder
       }
       if (this.$refs.widgetForm) {
@@ -682,29 +689,30 @@ export default {
       }
       this.isAdd = true
     },
-    showEditDialog (item) {
+    showEditDialog(item) {
       this.isAdd = false
       this.widgetDialogVisible = true
       let { index, type } = item
-      let x = this.widgetTypes[index].children.find(_ => _.type === type)
+      let x = this.widgetTypes[index].children.find(_ => _.type == type)
       this.widget.alias = this.widgetTypes[index].alias
       this.widget.title = x.title
       this.widget.type = this.widgetTypes[index].type
 
       this.widget.unit.length = this.widget.unit1.length = this.widget.unit2.length = 1
-      if (x.unit !== undefined) {
+      if (x.unit != undefined) {
         if (Array.isArray(x.unit)) {
-          if (x.type === '16777219') {
+          if (x.type == "16777219") {
             this.widget.unit1.push(x.unit[0])
             this.widget.unit2.push(x.unit[1])
-          } else {
+          }
+          else {
             this.widget.unit = this.widget.unit.concat(x.unit)
           }
-        } else {
-          this.widget.unit.push(x.unit)
         }
+        else
+          this.widget.unit.push(x.unit)
       }
-      if (x.folder !== undefined) {
+      if (x.folder != undefined) {
         this.widget.folder = x.folder
       }
       this.widgetForm.id = item.id
@@ -713,21 +721,23 @@ export default {
       this.widgetForm.name = item.name
       this.widgetForm.unit = item.unit
 
-      if (x.type === '-2130706430') {
+      if (x.type == '-2130706430') {
         this.widgetForm.map.key0 = item.map.key0
         this.widgetForm.map.key1 = item.map.key1
         this.widgetForm.map.key2 = item.map.key2
         this.widgetForm.map.key3 = item.map.key3
-      } else if (x.type === '-2130706431') {
+      }
+      else if (x.type == '-2130706431') {
         this.widgetForm.map.key0 = item.map.key0
         this.widgetForm.map.key1 = item.map.key1
         this.widgetForm.map.key2 = item.map.key2
-      } else {
+      }
+      else {
         this.widgetForm.map.key0 = item.map.key0
         this.widgetForm.map.key1 = item.map.key1
       }
 
-      if (this.widget.type === 5) {
+      if (this.widget.type == 5) {
         this.widgetForm.control = {
           arrowup0: item.map.arrowup0,
           arrowup1: item.map.arrowup1,
@@ -747,63 +757,64 @@ export default {
         this.widgetForm.unit2 = unit2
       }
     },
-    showDeleteDialog (row) {
+    showDeleteDialog(row) {
       this.deleteDialogVisible = true
       this.selectWidget = row
     },
-    convertValue (value, type = '') {
-      if (type !== '16777223' && type !== '16777226') {
-        if (value === '') {
+    convertValue(value, type = '') {
+      if (type != '16777223' && type != '16777226') {
+        if (value == '')
           return 0
-        }
-        return value
-      } else {
         return value
       }
-    },
-    convertDate (value) {
-      let x = formatDate(value, 'yyyy年MM月dd日')
-      if (x === 'NaN年aN月aN日') {
+      else
         return value
-      } else {
-        return x
-      }
     },
-    parentInt (value) {
-      if (value === '') {
+    convertDate(value) {
+      let x = formatDate(value, "yyyy年MM月dd日")
+      if (x == 'NaN年aN月aN日') {
+        return value
+      }
+      else
+        return x;
+    },
+    parentInt(value) {
+      if (value == '')
         return 0
-      }
       return Number(value)
     },
-    getBooleanValue (item) {
-      if (item.value === 0) {
+    getBooleanValue(item) {
+      if (item.value == 0)
         return item.map.key0
-      } else {
+      else
         return item.map.key1
-      }
     },
-    getComputedClass (value) {
+    getComputedClass(value) {
       if (value.length < 9) {
         return ''
-      } else if (value.length >= 9 && value.length < 20) {
+      }
+      else if (value.length >= 9 && value.length < 20) {
         return 'line1'
-      } else if (value >= 20 && value.length < 30) {
+      }
+      else if (value >= 20 && value.length < 30) {
         return 'line2'
-      } else {
+      }
+      else {
         return 'line3'
       }
     },
-    setZoom (zoom) {
+    setZoom(zoom) {
       let x
       if (zoom) {
-        x = window.screen.width - 210 - 330 - 20 - 30 // vw-菜单宽度-右侧panel宽度-滚动条
-      } else {
-        x = window.screen.width - 210 - 60 - 20 - 10
+        x = window.screen.width - 210 - 330 - 20 - 30  //vw-菜单宽度-右侧panel宽度-滚动条
       }
+      else
+        x = window.screen.width - 210 - 60 - 20 - 10
       this.$refs.widgetWarp.style.setProperty('--width', `${x}px`)
       this.zoom = zoom
     },
-    async  watchData (newList) {
+    async  watchData(newList) {
+
       let list = newList.map((_, index) => {
         return {
           id: _.id,
@@ -811,22 +822,20 @@ export default {
         }
       })
       let { resultcode } = await this.$api.editWidgets(list)
-      if (resultcode === 0) {
+      if (resultcode == 0)
         this.getWidgetByProjectIdAsync()
-      }
     },
-    async getWidgetByProjectIdAsync () {
+    async getWidgetByProjectIdAsync() {
       let { resultcode, data } = await this.$api.getWidgetByProjectId(this.id)
-      if (resultcode === 0) {
+      if (resultcode == 0) {
         if (data && data.widgets) {
           data.widgets.forEach(_ => {
-            let temp, temp1
+            let temp, temp1;
             for (let i = 0; i < this.widgetTypes.length; i++) {
-              // eslint-disable-next-line eqeqeq
-              temp1 = this.widgetTypes[i].children.find(o => o.type == _.type) // 这两个值不全等
-              if (temp1 !== undefined) {
-                temp = this.widgetTypes[i]
-                break
+              temp1 = this.widgetTypes[i].children.find(o => o.type == _.type)
+              if (temp1 != undefined) {
+                temp = this.widgetTypes[i];
+                break;
               }
             }
             if (temp != null) {
@@ -838,7 +847,7 @@ export default {
               _.folder = temp1.folder || ''
               _.value = ''
             }
-            if (_.index === 6) {
+            if (_.index == 6) {
               _.value = 0
             }
           })
@@ -846,14 +855,13 @@ export default {
         }
       }
     },
-    async  runAsync () {
+    async  runAsync() {
       let { resultcode } = await this.$api.runProject(this.id)
-      if (resultcode === 0) {
+      if (resultcode == 0) {
         this.isRunning = true
         this.$store.commit('RUN_PROJECT', {
           id: this.id,
-          isRunning: true
-        })
+          isRunning: true        })
         this.widgetList.forEach(_ => {
           _.isRunning = true
         })
@@ -863,14 +871,13 @@ export default {
         })
       }
     },
-    async stopAsync () {
+    async stopAsync() {
       let { resultcode } = await this.$api.stopProject(this.id)
-      if (resultcode === 0) {
+      if (resultcode == 0) {
         this.isRunning = false
         this.$store.commit('RUN_PROJECT', {
           id: this.id,
-          isRunning: false
-        })
+          isRunning: false        })
         this.widgetList.forEach(_ => {
           _.isRunning = true
         })
@@ -879,9 +886,9 @@ export default {
         })
       }
     },
-    async runWidgetAsync (item) {
+    async runWidgetAsync(item) {
       let { resultcode } = await this.$api.runWidget(item.id)
-      if (resultcode === 0) {
+      if (resultcode == 0) {
         item.isRunning = true
         this.$store.dispatch('MQTTWidgetConnect', {
           projectId: this.code,
@@ -889,66 +896,72 @@ export default {
         })
       }
     },
-    async stopWidgetAsync (item) {
+    async stopWidgetAsync(item) {
       let { resultcode } = await this.$api.stopWidget(item.id)
-      if (resultcode === 0) {
+      if (resultcode == 0) {
         item.isRunning = false
       }
     },
-    async saveWidgetAsyc () {
+    async saveWidgetAsyc() {
       this.$refs.widgetForm.validate(async valid => {
         if (valid) {
           let { unit1, unit2, control, ...data } = this.widgetForm
-          if (this.widgetForm.type === '16777219') { // 温湿度传感器
+          if (this.widgetForm.type == '16777219') //温湿度传感器
+          {
             data.unit = [unit1, unit2].join('/')
           }
-          if (this.widgetForm.type === '-2130706431') { // 点阵屏
-            let lattice = this.latticeTypes.find(_ => _.desc === data.map.key0)
+          if (this.widgetForm.type == '-2130706431') // 点阵屏
+          {
+            let lattice = this.latticeTypes.find(_ => _.desc == data.map.key0)
             data.map.key1 = lattice.src
             data.map.key2 = lattice.value
             delete data.map.key3
           }
-          if (this.widgetForm.type !== '-2130706430' && this.widgetForm.type !== '-2130706431') { // 四位数码管&点阵屏
+          if (this.widgetForm.type != '-2130706430' && this.widgetForm.type != '-2130706431') //四位数码管&点阵屏
+          {
             delete data.map.key2
             delete data.map.key3
           }
 
-          if (this.widget.type === 5) { // 方向控制
+          if (this.widget.type == 5) //方向控制
+          {
             data.map = control
           }
-          if (this.widget.type === 6) { // 滚动条
+          if (this.widget.type == 6) //滚动条
+          {
             if (data.map.key0 > data.map.key1) {
               this.$message.error('输入值范围取值错误')
               return
             }
           }
-          if (this.isAdd) {
+          if (this.isAdd)
             data.positionX = this.widgetList.length + 1
-          }
           let { resultcode } = this.isAdd ? await this.$api.addWidget(this.id, data) : await this.$api.editWidget(data)
-          if (resultcode === 0) {
+          if (resultcode == 0) {
             this.$message.success('操作成功')
             this.widgetDialogVisible = false
-            // if (this.isAdd)
+            //if (this.isAdd)
             this.getWidgetByProjectIdAsync()
-          } else if (resultcode === 100) {
+          }
+          else if (resultcode == 100) {
             this.$message.error('ID重复无法新增')
           }
         }
       })
     },
-    async deleteAsync () {
+    async deleteAsync() {
       let { resultcode } = await this.$api.deleteWidget(this.selectWidget.id)
-      if (resultcode === 0) {
+      if (resultcode == 0) {
         this.getWidgetByProjectIdAsync()
         this.deleteDialogVisible = false
         this.$message.success('删除成功')
-      } else {
+      }
+      else {
         this.$message.error('删除失败')
       }
     },
 
-    async editInputWarp ({ map, value, sensor }) {
+    async editInputWarp({ map, value, sensor }) {
       // let { id } = sensor
       // let data = {
       //   id,
@@ -960,10 +973,10 @@ export default {
       // }
       this.getCommandAsync(sensor.code, value)
     },
-    sendMsg ({ value, sensor }) {
+    sendMsg({ value, sensor }) {
       this.getCommandAsync(sensor.code, value)
     },
-    async getCommandAsync (code, value) {
+    async getCommandAsync(code, value) {
       await this.$api.getWidgetCommand(this.code, code, value)
     }
   }
