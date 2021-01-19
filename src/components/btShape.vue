@@ -29,8 +29,8 @@
 </template>
 <script>
 export default {
-  name: "",
-  data() {
+  name: '',
+  data () {
     return {
       isUpActive: false,
       isRightActice: false,
@@ -49,65 +49,66 @@ export default {
       type: Object
     },
     isClickable: {
-      type: false
+      type: Boolean,
+      default: false
     }
   },
   methods: {
-    onArrowUpMouseDown() {
+    onArrowUpMouseDown () {
       if (this.isClickable) {
         this.isUpActive = true
         this.getCommandAsync(this.widgetCode, 'arrowup0')
       }
     },
-    onArrowUpMouseUp() {
+    onArrowUpMouseUp () {
       if (this.isClickable) {
         this.isUpActive = false
         this.getCommandAsync(this.widgetCode, 'arrowup1')
       }
     },
 
-    onArrowDownMouseDown() {
+    onArrowDownMouseDown () {
       if (this.isClickable) {
         this.isDownActive = true
         this.getCommandAsync(this.widgetCode, 'arrowdown0')
       }
     },
-    onArrowDownMouseUp() {
+    onArrowDownMouseUp () {
       if (this.isClickable) {
         this.isDownActive = false
         this.getCommandAsync(this.widgetCode, 'arrowdown1')
       }
     },
 
-    onArrowLeftMouseDown() {
+    onArrowLeftMouseDown () {
       if (this.isClickable) {
         this.isLeftActive = true
         this.getCommandAsync(this.widgetCode, 'arrowleft0')
       }
     },
-    onArrowLeftMouseUp() {
+    onArrowLeftMouseUp () {
       if (this.isClickable) {
         this.isLeftActive = false
         this.getCommandAsync(this.widgetCode, 'arrowleft1')
       }
     },
 
-    onArrowRightMouseDown() {
+    onArrowRightMouseDown () {
       if (this.isClickable) {
         this.isRightActice = true
         this.getCommandAsync(this.widgetCode, 'arrowright0')
       }
     },
-    onArrowRightMouseUp() {
+    onArrowRightMouseUp () {
       if (this.isClickable) {
         this.isRightActice = false
         this.getCommandAsync(this.widgetCode, 'arrowright1')
       }
     },
 
-    async getCommandAsync(code, value) {
+    async getCommandAsync (code, value) {
       let { resultcode } = await this.$api.getWidgetCommand(this.code, code, value)
-      if (resultcode == 0) {
+      if (resultcode === 0) {
 
       }
     }

@@ -22,7 +22,12 @@
         </el-form-item>
       </el-form>
     </div>
-    <main>
+    <el-alert
+      type="info"
+      description="由于疫情原因，全国青少年电子信息智能创新大赛预计今年下旬启动，具体消息请以后续公告为准。"
+      show-icon>
+    </el-alert>
+    <main style="height: 760px">
       <ul>
         <li
           v-for="(item,index) in list"
@@ -127,8 +132,8 @@ import { mapGetters } from 'vuex'
 import { requiredInput, maxInput } from '@/utils/validate'
 import eventBus from '@/eventBus.js'
 export default {
-  name: "",
-  data() {
+  name: '',
+  data () {
     return {
       name: '',
       page: 1,
@@ -155,103 +160,104 @@ export default {
   computed: {
     ...mapGetters(['user', 'projects'])
   },
-  mounted() {
+  mounted () {
     this.getListAsync()
   },
-  created() {
+  created () {
     eventBus.$on('edit', () => {
       this.getListAsync()
     })
   },
   methods: {
-    showDialog(isAdd = true, row) {
+    showDialog (isAdd = true, row) {
       this.dialogVisible = true
       this.isAdd = isAdd
-      if (this.$refs.editForm)
+      if (this.$refs.editForm) {
         this.$refs.editForm.resetFields()
+      }
       if (isAdd) {
         this.editForm = {
           name: '',
           remark: '',
           code: ''
         }
-      }
-      else {
+      } else {
         this.editForm = { ...this.editForm, ...row }
       }
     },
-    showDeleteDialog(row) {
+    showDeleteDialog (row) {
       this.deleteDialogVisible = true
       this.selectProject = row
     },
-    search() {
+    search () {
       this.page = 1
       this.getListAsync()
     },
-    handleCurrentChange(val) {
+    handleCurrentChange (val) {
       this.page = val
       this.getListAsync()
     },
-    gotoDetail(item) {
-      if (item.id != undefined)
+    gotoDetail (item) {
+      if (item.id !== undefined) {
         this.$emit('openProject', item)
+      }
     },
-    clipboardSuccess() {
+    clipboardSuccess () {
       this.$message.success('复制成功')
     },
-    async getCodeAsync() {
+    async getCodeAsync () {
       let { resultcode, data } = await this.$api.getCode()
-      if (resultcode == 0)
+      if (resultcode === 0) {
         this.editForm.code = data
+      }
     },
 
-    async getListAsync() {
+    async getListAsync () {
       let { resultcode, data } = await this.$api.getProjectList(this.page, this.rows, this.name)
-      if (resultcode == 0) {
+      if (resultcode === 0) {
         let { total, rows } = data
         this.total = total
         if (rows.length < 8) {
           let newObj = {}
           this.list = rows.concat(new Array(8 - rows.length).fill(newObj))
-        }
-        else
+        } else {
           this.list = rows
+        }
       }
     },
-    async saveAsync() {
+    async saveAsync () {
       this.$refs.editForm.validate(async valid => {
         if (valid) {
-          if (this.isAdd)
+          if (this.isAdd) {
             this.editForm.user = this.user
+          }
           let { resultcode } = this.isAdd ? await this.$api.addProject(this.editForm) : await this.$api.editProject(this.editForm)
-          if (resultcode == 0) {
+          if (resultcode === 0) {
             this.$message.success('操作成功')
             this.dialogVisible = false
             this.getListAsync()
-          }
-          else if (resultcode == 100) {
+          } else if (resultcode === 100) {
             this.$message.error('重复的识别码')
           }
         }
       })
     },
-    async deleteAsync() {
-      let project = this.projects.find(_ => _.id == this.selectProject.id)
+    async deleteAsync () {
+      let project = this.projects.find(_ => _.id === this.selectProject.id)
       if (project != null) {
         this.$message.error('项目已打开,无法删除')
         this.deleteDialogVisible = false
         return
       }
       let { resultcode } = await this.$api.deleteProject(this.selectProject.id)
-      if (resultcode == 0) {
-        if (this.list.filter(_ => _.id != undefined).length == 1 && this.page != 1) {
+      if (resultcode === 0) {
+        if (this.list.filter(_ => _.id !== undefined).length === 1 && this.page !== 1) {
           this.page = this.page - 1
         }
         this.getListAsync()
         this.deleteDialogVisible = false
         this.$message.success('删除成功')
-      }
-      else {
+      } else {
         this.$message.error('删除失败')
       }
     }
@@ -357,6 +363,7 @@ export default {
           line-height: 3em;
           font-size: 0.5em;
           // height: calc(25vh - 30px);
+          // 自动换行样式
           :nth-child(1) {
             .ellipsis(6);
           }

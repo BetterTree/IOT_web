@@ -6,13 +6,13 @@
         <router-view></router-view>
       </transition>
     </el-main>
-    <bt-footer></bt-footer>
+    <!-- <bt-footer></bt-footer> -->
   </el-container>
 </template>
 <script>
 export default {
   name: 'layout',
-  data() {
+  data () {
     return {
     }
   },
@@ -44,10 +44,6 @@ export default {
     .el-main {
       padding: 0;
       background-color: #838a9d;
-    }
-    .el-footer {
-      padding: 0;
-      text-align: center;
     }
   }
 </style>

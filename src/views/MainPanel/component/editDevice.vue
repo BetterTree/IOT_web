@@ -115,8 +115,8 @@
 <script>
 import { requiredInput, maxInput } from '@/utils/validate'
 export default {
-  name: "",
-  data() {
+  name: '',
+  data () {
     return {
       editDeviceForm: {
         name: '',
@@ -136,7 +136,7 @@ export default {
         name: ''
       },
       isAdd: false,
-      timer: null,
+      timer: null
     }
   },
   props: {
@@ -150,15 +150,16 @@ export default {
       type: Boolean
     }
   },
-  created() {
+  created () {
     this.getDeviceByIdAsync()
   },
   methods: {
-    showDeviceDialog(isAdd = true, row) {
+    showDeviceDialog (isAdd = true, row) {
       this.dialogVisible = true
       this.isAdd = isAdd
-      if (this.$refs.editDeviceForm)
+      if (this.$refs.editDeviceForm) {
         this.$refs.editDeviceForm.resetFields()
+      }
       if (isAdd) {
         this.editDeviceForm = {
           name: '',
@@ -167,58 +168,57 @@ export default {
             id: this.id
           }
         }
-      }
-      else {
+      } else {
         this.editDeviceForm = { ...this.editDeviceForm, ...row }
       }
     },
-    showDeviceDeleteDialog(row) {
+    showDeviceDeleteDialog (row) {
       this.deleteDialogVisible = true
       this.selectDevice = row
     },
-    clipboardSuccess() {
+    clipboardSuccess () {
       this.$message.success('复制成功')
     },
-    async getDeviceByIdAsync() {
+    async getDeviceByIdAsync () {
       let { resultcode, data } = await this.$api.getDeviceByProjectId(this.id)
-      if (resultcode == 0) {
+      if (resultcode === 0) {
         this.deviceList = data && data.rows
       }
     },
-    async getCodeAsync() {
+    async getCodeAsync () {
       let { resultcode, data } = await this.$api.getCode()
-      if (resultcode == 0)
+      if (resultcode === 0) {
         this.editDeviceForm.code = data
+      }
     },
-    async getDeviceStatusAsync() {
+    async getDeviceStatusAsync () {
       let { resultcode, data } = await this.$api.getDeviceStatus(this.code)
-      if (resultcode == 0) {
+      if (resultcode === 0) {
         this.deviceList.forEach(_ => {
-          let item = data.find(o => o.id == _.id)
-          if (!!item) {
+          let item = data.find(o => o.id === _.id)
+          if (!item) {
             _.status = item.status
           }
         })
       }
     },
-    async saveDeviceAsync() {
+    async saveDeviceAsync () {
       this.$refs.editDeviceForm.validate(async valid => {
         if (valid) {
           let { resultcode } = this.isAdd ? await this.$api.addDevice(this.editDeviceForm) : await this.$api.editDevice(this.editDeviceForm)
-          if (resultcode == 0) {
+          if (resultcode === 0) {
             this.$message.success('操作成功')
             this.dialogVisible = false
             this.getDeviceByIdAsync()
-          }
-          else if (resultcode == 100) {
+          } else if (resultcode === 100) {
             this.$message.error('重复的识别码')
           }
         }
       })
     },
-    async deleteDeviceAsync() {
+    async deleteDeviceAsync () {
       let { resultcode } = await this.$api.deleteDevice(this.selectDevice.id)
-      if (resultcode == 0) {
+      if (resultcode === 0) {
         this.$message.success('操作成功')
         this.deleteDialogVisible = false
         this.getDeviceByIdAsync()
@@ -227,7 +227,7 @@ export default {
   },
   watch: {
     isRunning: function (newVal, oldVal) {
-      if (newVal == true) {
+      if (newVal === true) {
         //  this.$store.dispatch('MQTTConnect', this.id)
         this.timer = setInterval(() => {
           this.getDeviceStatusAsync()
@@ -235,9 +235,10 @@ export default {
       }
     }
   },
-  destroyed() {
-    if (this.timer != null)
+  destroyed () {
+    if (this.timer != null) {
       clearInterval(this.timer)
+    }
   }
 }
 </script>

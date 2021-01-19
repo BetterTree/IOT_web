@@ -15,24 +15,24 @@
           <i class="iconfont el-icon-setting" @click="dialogTableVisible = true"></i>
       </span>
 
-      <!-- Equipment List -->
-      <span class="el-dropdown-link">
-          <i class="iconfont el-icon-cpu el-icon--right"></i>
-        </span>
-
-      <!-- run button -->
+      <!-- Equipment Icon -->
       <span>
         <el-dropdown trigger="click">
+          <i class="iconfont el-icon-cpu el-icon--right"></i>
           <el-dropdown-menu slot="dropdown">
             <edit-device :id="id" :code="code" :isRunning="isRunning"></edit-device>
           </el-dropdown-menu>
         </el-dropdown>
       </span>
-      <span @click="runAsync()" v-if="!isRunning">
-        <i class="iconfont el-icon-video-play"></i>
-      </span>
-      <span @click="stopAsync()" v-else>
-        <i class="iconfont el-icon-video-pause"></i>
+
+      <!-- run button -->
+      <span>
+        <span @click="runAsync()" v-if="!isRunning">
+          <i class="iconfont el-icon-video-play"></i>
+        </span>
+        <span @click="stopAsync()" v-else>
+          <i class="iconfont el-icon-video-pause"></i>
+        </span>
       </span>
     </el-header>
     <!-- Toolbar End -->
@@ -78,40 +78,51 @@
                   </div>
                 </div>
               </div>
+              <!-- 组件列表 -->
               <div>
+                <!-- 组件标题栏 -->
                 <el-row class="t3">
                   <el-col :span="2" class="prefix">
                     <span>{{item.prefix}}</span>
                   </el-col>
-                  <el-col :span="10">
+                  <el-col :span="8">
                     <span class="name">{{item.name}}</span>
                   </el-col>
-                  <el-col :span="4">
+                  <el-col :span="2">
                     <span>{{item.code}}</span>
                   </el-col>
-                  <el-col :span="8" style="text-align:right;padding-right: 6px;">
-                    <i class="el-icon-more" @click="showEditDialog(item)"></i>
+                  <el-col :span="12" style="text-align:right;padding-right: 10px;">
+                    <i style="margin-right: 5px; font-size: 10px" class="iconfont el-icon-more" @click="showEditDialog(item)"></i>
                     <i
-                      class="el-icon-caret-right"
+                      class="iconfont el-icon-caret-right"
                       v-if="item.isRunning!=true"
                       @click="runWidgetAsync(item)"
+                      style="margin-right: 5px; font-size: 10px"
                     ></i>
-                    <i class="el-icon-video-pause" v-else @click="stopWidgetAsync(item)"></i>
-                    <i class="el-icon-delete" @click="showDeleteDialog(item)"></i>
+                    <i style="margin-right: 5px; font-size: 10px" class="iconfont el-icon-video-pause" v-else @click="stopWidgetAsync(item)"></i>
+                    <i style="font-size: 10px" class="iconfont el-icon-delete" @click="showDeleteDialog(item)"></i>
                   </el-col>
                 </el-row>
+                <!-- 组件内容栏 -->
                 <div style="margin-top: 30px;height:180px">
+                  <!-- 组件在运行状态 -->
                   <template v-if="!item.isRunning">
-                    <template v-if="item.index==0">
+
+                    <!-- 数值显示 -->
+                    <template v-if="it em.index==0">
+                      <!-- 温湿度显示逻辑 -->
                       <div v-if="item.type=='16777219'" class="w0 style1">
                         XX{{item.unit.split('/')[0]}}
                         YY{{item.unit.split('/')[1]}}
                       </div>
+                      <!-- 摇杆显示逻辑 -->
                       <div v-else-if="item.type=='16777227'" class="w0 style2">XY</div>
                       <div v-else class="w0 style3">
                         <i>XX{{item.unit}}</i>
                       </div>
                     </template>
+
+                    <!-- 布尔显示 -->
                     <template v-else-if="item.index==1">
                       <div class="w1">
                         <swiper :options="swiperOption">
@@ -129,9 +140,13 @@
                         </swiper>
                       </div>
                     </template>
+
+                    <!-- 时间显示 -->
                     <template v-else-if="item.index==2">
                       <div class="w2">年月日</div>
                     </template>
+
+                    <!-- 开关控制 -->
                     <template v-else-if="item.index==3">
                       <div class="w3">
                         <img
@@ -142,6 +157,8 @@
                         />
                       </div>
                     </template>
+
+                    <!-- 多功能组件 -->
                     <template v-else-if="item.index==4">
                       <div v-if="item.type=='-2130706431'" class="w4 style0">
                         <img :src="require(`@/assets/img/lattice/${item.map.key1}.png`)" />
@@ -153,9 +170,13 @@
                         <span>{{item.map.key3}}</span>
                       </div>
                     </template>
+
+                    <!-- 方向控制 -->
                     <template v-else-if="item.index==5">
                       <bt-shape class="w5"></bt-shape>
                     </template>
+
+                    <!-- 滚动条控制 -->
                     <template v-else-if="item.index==6">
                       <el-slider
                         disabled
@@ -165,14 +186,18 @@
                       ></el-slider>
                     </template>
                   </template>
+
+                  <!-- 运行状态 -->
                   <template v-else>
                     <template v-if="item.index==0">
+                      <!-- 温湿度显示逻辑 -->
                       <div v-if="item.type=='16777219'" class="w0 style1 active">
                         <span>{{convertValue(item.value.substring(0,4))}}</span>
                         <i>{{item.unit.split('/')[0]}}</i>
                         <span style="margin-left:10px">{{convertValue(item.value.substring(4,8))}}</span>
                         <i>{{item.unit.split('/')[1]}}</i>
                       </div>
+                      <!-- 摇杆显示逻辑 -->
                       <div v-else-if="item.type=='16777227'" class="w0 style2 active">
                         <div>
                           <span>X:{{convertValue(item.value.substring(0,4))}}</span>
@@ -242,6 +267,8 @@
             </drag-item>
           </drag-wrap>
         </div>
+
+        <!-- 创建 or 编辑 组件弹出框 -->
         <el-dialog
           :visible.sync="widgetDialogVisible"
           :custom-class="'widgetDialog '+'widgetDialog'+widget.type"
@@ -250,10 +277,13 @@
           top="35vh"
           :close-on-click-modal="false"
         >
+          <!-- 弹出框标题栏 -->
           <template slot="title">
-            <div>{{widget.alias}}</div>
-            <div>{{widget.title}}</div>
+            <div style="font-size: 0.3em;">{{widget.alias}}</div>
+            <div style="font-size: 0.3em;">{{widget.title}}</div>
           </template>
+
+          <!-- 弹出框表单 -->
           <el-form :inline="true" ref="widgetForm" :model="widgetForm" :rules="rules">
             <template v-if="widget.type==5">
               <bt-shape style="text-align:center">
@@ -445,6 +475,8 @@
             <el-button type="primary" @click="saveWidgetAsyc()">确定</el-button>
           </div>
         </el-dialog>
+
+        <!-- 删除组件询问框 -->
         <el-dialog
           :visible.sync="deleteDialogVisible"
           :center="true"
@@ -464,7 +496,7 @@
         </el-dialog>
       </el-main>
       <el-dialog :visible.sync="dialogTableVisible">
-          <edit-project :id="id"></edit-project>
+        <edit-project :id="id"></edit-project>
       </el-dialog>
     </el-container>
   </el-container>
@@ -560,9 +592,9 @@ export default {
     projectCode
   },
   computed:
-  {
-    ...mapGetters(['listeners']),
-  },
+    {
+      ...mapGetters(['listeners']),
+    },
   mounted() {
     let x = window.screen.width - 210 - 330 - 20 - 30
     this.$refs.widgetWarp.style.setProperty('--width', `${x}px`)
@@ -1085,8 +1117,8 @@ export default {
             }
             .t3 {
               font-size: 0.5em;
-              height: 30px;
-              line-height: 30px;
+              height: 40px;
+              line-height: 40px;
               background: white;
               width: 100%;
               text-align: left;

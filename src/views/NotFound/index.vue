@@ -3,8 +3,8 @@
 </template>
 <script>
 export default {
-  name: "",
-  data() {
+  name: '',
+  data () {
     return {
     }
   }

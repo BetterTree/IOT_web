@@ -6,8 +6,8 @@
 <script>
 import { throttle } from '@/utils/throttle'
 export default {
-  name: "",
-  data() {
+  name: '',
+  data () {
     return {
       inputValue: 0
     }
@@ -20,11 +20,11 @@ export default {
       type: Number
     }
   },
-  mounted() {
+  mounted () {
     this.inputValue = this.value
   },
   methods: {
-    change(value) {
+    change (value) {
       throttle(() => {
         this.$emit('success', {
           value,

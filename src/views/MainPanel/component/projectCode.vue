@@ -2,7 +2,6 @@
   <el-form
     ref="editForm"
     :model="editForm"
-    :rules="rules"
     label-width="70px"
     label-position="right"
   >
@@ -39,7 +38,7 @@ export default {
 
   },
   mounted () {
-    this.editForm = { ...this.projects.find(_ => _.id == this.id) }
+    this.editForm = { ...this.projects.find(_ => _.id === this.id) }
   },
   methods: {
     clipboardSuccess () {

@@ -25,7 +25,7 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'Navbar',
-  data() {
+  data () {
     return {
       web_site: process.env.VUE_APP_ORIGIN_SITE
     }
@@ -33,20 +33,21 @@ export default {
   computed: {
     ...mapGetters(['sidebar', 'user'])
   },
-  mounted() {
+  mounted () {
     console.log(process.env.VUE_APP_ORIGIN_SITE)
   },
   methods: {
-    toggleClick() {
+    toggleClick () {
       this.$store.dispatch('ToggleSideBar')
     },
-    command(val) {
-      if (val.startsWith("/"))
+    command (val) {
+      if (val.startsWith('/')) {
         this.$router.push(val)
-      else
+      } else {
         this.logOut()
+      }
     },
-    logOut() {
+    logOut () {
       this.$store.dispatch('LoginOutAsync').then(() => {
         localStorage.removeItem('Token')
         window.location.href = '/'

@@ -26,47 +26,46 @@ export default {
     Editor
   },
   computed: {
-    ...mapGetters(['projects']),
+    ...mapGetters(['projects'])
   },
-  data() {
+  data () {
     return {
       editableTabs: [],
       editableTabsValue: 'home'
     }
   },
-  created() {
+  created () {
     eventBus.$on('edit', ({ id, name }) => {
-      let x = this.editableTabs.find(_ => _.id == id)
+      let x = this.editableTabs.find(_ => _.id === id)
       x.name = name
     })
   },
   methods: {
-    openProject(item) {
-      if (this.editableTabs.find(_ => _.id == item.id) == null) {
+    openProject (item) {
+      if (this.editableTabs.find(_ => _.id === item.id) == null) {
         this.$store.commit('SET_PROJECTS', item)
         this.editableTabs.push(item)
       }
       this.editableTabsValue = item.id + ''
     },
-    removeTab(targetName) {
-      let targetIndex = this.editableTabs.findIndex(_ => _.id == targetName)
+    removeTab (targetName) {
+      let targetIndex = this.editableTabs.findIndex(_ => _.id === targetName)
       let array = this.editableTabs.splice(targetIndex, 1)
       this.$store.commit('REMOVE_PROJECT', array[0])
-      if (this.editableTabs.length == 0) {
+      if (this.editableTabs.length === 0) {
         this.editableTabsValue = 'home'
-      }
-      else {
+      } else {
         let index = targetIndex - 1
-        if (index < 0)
+        if (index < 0) {
           index = 0
+        }
         this.editableTabsValue = this.editableTabs[index].id + ''
       }
-
     },
-    async closeAll() {
+    async closeAll () {
       this.editableTabsValue = 'home'
       this.editableTabs = []
-      this.projects.forEach(async  _ => {
+      this.projects.forEach(async _ => {
         if (_.isRunning) {
           await this.$api.stopProject(_.id)
         }

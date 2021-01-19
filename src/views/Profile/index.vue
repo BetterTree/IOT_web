@@ -23,6 +23,7 @@
               :headers="headers"
               :on-success="handleSuccess"
             >
+              <br />
               <el-button type="ghost">选择图片</el-button>
             </el-upload>
           </el-form-item>
@@ -30,7 +31,7 @@
       </el-row>
       <el-row>
         <el-col :span="12">
-          <el-form-item label="你的性别">
+          <el-form-item label="性别">
             <el-radio-group v-model="editForm.gender">
               <el-radio :label="'1'">男</el-radio>
               <el-radio :label="'0'">女</el-radio>
@@ -45,12 +46,12 @@
       </el-row>
       <el-row>
         <el-col :span="12">
-          <el-form-item label="你的手机号码">
+          <el-form-item label="手机号码">
             <el-input v-model="editForm.userTel"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="你的邮箱">
+          <el-form-item label="邮箱地址">
             <el-input v-model="editForm.userEmail"></el-input>
           </el-form-item>
         </el-col>
@@ -95,10 +96,9 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import { requiredInput } from '@/utils/validate'
 export default {
   name: '',
-  data() {
+  data () {
     return {
       editForm: {
         gender: '0',
@@ -122,15 +122,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['user']),
+    ...mapGetters(['user'])
 
   },
-  mounted() {
+  mounted () {
     this.editForm = Object.assign({}, this.editForm, this.user)
     this.editFormCopy = { ...this.editForm }
   },
   methods: {
-    beforeUpload(file) {
+    beforeUpload (file) {
       console.log(1)
       this.file = file
       let reader = new FileReader()
@@ -139,18 +139,18 @@ export default {
       reader.onloadend = function (e) {
         _this.previewImageSrc = reader.result
       }
-      //return false;
+      // return false;
     },
-    handleSuccess(file) {
+    handleSuccess (file) {
       this.editForm.userPhoto = file.data
     },
-    cancel() {
-      //this.editForm = { ...this.editFormCopy }
+    cancel () {
+      // this.editForm = { ...this.editFormCopy }
       this.$router.go(-1)
     },
-    async saveAsync() {
+    async saveAsync () {
       let { resultcode } = await this.$api.editUser(this.editForm)
-      if (resultcode == 0) {
+      if (resultcode === 0) {
         let user = { ...this.user, ...this.editForm }
         this.$message.success('修改成功')
         this.$store.commit('SET_USER', user)
@@ -180,6 +180,9 @@ export default {
       margin-bottom: 15px;
       .el-col {
         .el-form-item {
+          .el-input {
+            width: 300px;
+          }
           .el-form-item__label {
             font-size: 30px;
             color: #3c4353;
@@ -189,7 +192,7 @@ export default {
             img {
               width: 80px;
               height: 80px;
-              object-fit: fit;
+              object-fit: fill;
             }
             .el-date-editor.el-input,
             .el-date-editor.el-input__inner {

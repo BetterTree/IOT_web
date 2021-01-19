@@ -23,7 +23,7 @@ import { requiredInput, maxInput } from '@/utils/validate'
 import eventBus from '@/eventBus.js'
 export default {
   name: 'editProject',
-  data() {
+  data () {
     return {
       editForm: {
         name: '',
@@ -43,21 +43,21 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['projects']),
+    ...mapGetters(['projects'])
 
   },
-  mounted() {
-    this.editForm = { ...this.projects.find(_ => _.id == this.id) }
+  mounted () {
+    this.editForm = { ...this.projects.find(_ => _.id === this.id) }
   },
   methods: {
-    async saveProjectAsync() {
+    async saveProjectAsync () {
       console.log(this.dialogTableVisible)
-      this.dialogTableVisible = false;
+      this.dialogTableVisible = false
       console.log(this.dialogTableVisible)
       this.$refs.editForm.validate(async valid => {
         if (valid) {
           let { resultcode } = await this.$api.editProject(this.editForm)
-          if (resultcode == 0) {
+          if (resultcode === 0) {
             this.$message.success('修改成功')
             this.$store.commit('SET_PROJECTS', this.editForm)
             eventBus.$emit('edit', {
@@ -67,7 +67,7 @@ export default {
         }
       })
     },
-    clipboardSuccess() {
+    clipboardSuccess () {
       this.$message.success('复制成功')
     }
   }
